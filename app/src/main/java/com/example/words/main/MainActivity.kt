@@ -2,10 +2,12 @@ package com.example.words.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.words.MyApplication
 import com.example.words.R
+import com.example.words.main.ui.CustomTouchHelper
 import com.example.words.main.ui.RVAdapter
 import javax.inject.Inject
 
@@ -35,7 +37,8 @@ class MainActivity : AppCompatActivity() {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
-
+            val customItemTouchHelper = ItemTouchHelper(CustomTouchHelper(viewModel))
+            customItemTouchHelper.attachToRecyclerView(recyclerView)
         }
     }
 
