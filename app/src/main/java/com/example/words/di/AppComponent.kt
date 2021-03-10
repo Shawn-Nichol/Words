@@ -5,7 +5,7 @@ import com.example.words.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 
-@Component
+@Component(modules = [RoomModule::class])
 interface AppComponent {
 
     @Component.Factory
