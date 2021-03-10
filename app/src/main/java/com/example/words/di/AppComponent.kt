@@ -1,7 +1,7 @@
 package com.example.words.di
 
 import android.content.Context
-import com.example.words.MainActivity
+import com.example.words.main.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 

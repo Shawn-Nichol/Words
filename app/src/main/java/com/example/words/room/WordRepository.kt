@@ -1,8 +1,9 @@
 package com.example.words.room
 
 import androidx.lifecycle.LiveData
+import javax.inject.Inject
 
-class WordRepository(private val wordDao: WordDao) {
+class WordRepository @Inject constructor(private val wordDao: WordDao) {
 
     val allWords: LiveData<List<Word>> = wordDao.getAlphabetizedWords()
 
