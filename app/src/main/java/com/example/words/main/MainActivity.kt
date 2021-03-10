@@ -2,11 +2,13 @@ package com.example.words.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.words.MyApplication
 import com.example.words.R
+import com.example.words.databinding.ActivityMainBinding
 import com.example.words.main.ui.CustomTouchHelper
 import com.example.words.main.ui.RVAdapter
 import javax.inject.Inject
@@ -19,11 +21,13 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var rvAdapter: RVAdapter
 
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.binding = this
 
         initRecyclerView()
         submitList()
@@ -48,5 +52,9 @@ class MainActivity : AppCompatActivity() {
                 rvAdapter.submitList(it)
             }
         })
+    }
+
+    fun fabNewWord() {
+
     }
 }
