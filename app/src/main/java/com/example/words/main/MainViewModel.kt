@@ -14,7 +14,7 @@ class MainViewModel @Inject constructor(var repository: WordRepository): ViewMod
 
     var wordList: LiveData<List<Word>> = repository.allWords
 
-    fun insertTopic(word: Word) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertWord(word: Word) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(word)
     }
 
