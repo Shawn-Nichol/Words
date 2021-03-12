@@ -1,5 +1,6 @@
 package com.example.words.main.ui
 
+import android.graphics.Color
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.words.main.MainViewModel
@@ -24,6 +25,7 @@ class CustomTouchHelper(val viewModel: MainViewModel) : ItemTouchHelper.Callback
         val startPosition = viewHolder.adapterPosition
         val endPosition  = target.adapterPosition
         recyclerView.adapter?.notifyItemMoved(startPosition, endPosition)
+
         return true
     }
 
@@ -35,4 +37,10 @@ class CustomTouchHelper(val viewModel: MainViewModel) : ItemTouchHelper.Callback
         viewModel.deleteWord(word)
     }
 
+    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+        super.onSelectedChanged(viewHolder, actionState)
+        if(actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
+            viewHolder?.itemView?.setBackgroundColor(Color.RED)
+        }
+    }
 }

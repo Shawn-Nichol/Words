@@ -10,30 +10,15 @@
             type="com.example.words.main.MainActivity" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".main.MainActivity">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/word_item" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_new_word"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/teal_200"
-            android:onClick="@{()-> binding.fabNewWord()}"
-            android:src="@drawable/ic_baseline_add_24"
-            app:backgroundTint="@color/material_on_surface_emphasis_high_type"
-            app:borderWidth="4dp"
-            app:layout_behavior=".main.ui.FABBehavior"/>
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
 
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>
