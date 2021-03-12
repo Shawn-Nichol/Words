@@ -1,8 +1,7 @@
-package com.example.words.main
+package com.example.words.main.wordlist
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.FragmentWordListBinding
-import com.example.words.main.ui.CustomTouchHelper
-import com.example.words.main.ui.RVAdapter
+import com.example.words.main.MainViewModel
+import com.example.words.main.wordlist.ui.CustomTouchHelper
+import com.example.words.main.wordlist.ui.RVAdapter
 import javax.inject.Inject
 
 

@@ -2,7 +2,8 @@ package com.example.words.di
 
 import android.content.Context
 import com.example.words.main.MainActivity
-import com.example.words.main.WordListFragment
+import com.example.words.main.newword.NewWordFragment
+import com.example.words.main.wordlist.WordListFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -19,4 +20,5 @@ interface AppComponent {
     // Class that can be injected
     fun inject(activity: MainActivity)
     fun inject(fragment: WordListFragment)
+    fun inject(fragment: NewWordFragment)
 }

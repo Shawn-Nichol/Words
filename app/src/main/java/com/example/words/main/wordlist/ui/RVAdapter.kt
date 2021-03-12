@@ -1,4 +1,4 @@
-package com.example.words.main.ui
+package com.example.words.main.wordlist.ui
 
 import android.view.LayoutInflater
 import android.view.View
