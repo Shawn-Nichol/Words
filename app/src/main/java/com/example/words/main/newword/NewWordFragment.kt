@@ -1,13 +1,16 @@
 package com.example.words.main.newword
 
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.FragmentNewWordBinding
@@ -46,7 +49,12 @@ class NewWordFragment : Fragment() {
         if (!TextUtils.isEmpty(editWordView.text)) {
             val word = Word(editWordView.text.toString())
             viewModel.insertWord(word)
-            return
+
+            // Hide keyboard
+            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view?.windowToken, 0)
+
+            findNavController().popBackStack()
         } else {
             Toast.makeText(context, "No word entered", Toast.LENGTH_SHORT).show()
         }
