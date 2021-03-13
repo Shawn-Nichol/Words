@@ -4,9 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.words.R
+import com.example.words.main.wordlist.WordListFragmentDirections
 import com.example.words.room.Word
 import javax.inject.Inject
 
@@ -37,5 +40,15 @@ class RVAdapter @Inject constructor() : androidx.recyclerview.widget.ListAdapter
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = getItem(position)
         holder.tv.text = item.word
+
+        // Set a unique transition name, so transition knows where to end when back button is pressed.
+        holder.tv.transitionName = "transition_word_$position"
+
+        holder.tv.setOnClickListener { view ->
+            val extras = FragmentNavigatorExtras(holder.tv to "transition_word")
+
+            val action = WordListFragmentDirections.actionDestWordListFragmentToDetailsFragment(item.word)
+            view.findNavController().navigate(action, extras)
+        }
     }
 }

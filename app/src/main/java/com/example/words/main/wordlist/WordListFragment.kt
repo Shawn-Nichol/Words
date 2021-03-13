@@ -66,6 +66,13 @@ class WordListFragment : Fragment() {
 
             val customItemTouchHelper = ItemTouchHelper(CustomTouchHelper(viewModel))
             customItemTouchHelper.attachToRecyclerView(recyclerView)
+
+            // Delay Transition on backpress.
+            postponeEnterTransition()
+            viewTreeObserver.addOnPreDrawListener {
+                startPostponedEnterTransition()
+                true
+            }
         }
     }
 
