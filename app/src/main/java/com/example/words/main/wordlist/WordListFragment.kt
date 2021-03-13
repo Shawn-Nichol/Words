@@ -1,30 +1,28 @@
 package com.example.words.main.wordlist
 
 
-import android.app.Notification
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.FragmentWordListBinding
 import com.example.words.main.MainViewModel
-import com.example.words.main.newword.NewWordFragment
 import com.example.words.main.wordlist.ui.CustomTouchHelper
 import com.example.words.main.wordlist.ui.RVAdapter
 import javax.inject.Inject
 
 
 class WordListFragment : Fragment() {
-
 
 
     @Inject
@@ -58,11 +56,14 @@ class WordListFragment : Fragment() {
 
     private fun initRecyclerView() {
         val recyclerView: RecyclerView = binding.recyclerView
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvAdapter = RVAdapter()
 
         recyclerView.apply {
             adapter = rvAdapter
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            this.layoutManager = layoutManager
+
+
 
             val customItemTouchHelper = ItemTouchHelper(CustomTouchHelper(viewModel))
             customItemTouchHelper.attachToRecyclerView(recyclerView)
@@ -73,6 +74,7 @@ class WordListFragment : Fragment() {
                 startPostponedEnterTransition()
                 true
             }
+
         }
     }
 
@@ -85,7 +87,7 @@ class WordListFragment : Fragment() {
     }
 
     fun fabNewWord() {
-         val action = R.id.action_wordListFragment_to_newWordFragment
-            findNavController().navigate(action)
+        val action = R.id.action_wordListFragment_to_newWordFragment
+        findNavController().navigate(action)
     }
 }

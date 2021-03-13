@@ -1,18 +1,15 @@
-TODO: In the NewWordsFragment add a transistion to the recycler view so you can see where the new
-word is.
-
 TODO: Unit Testing
-
-TODO: Add a new Fragment that loads the word and displays a description of the word.
 
 TODO: Setting Menu,
 - Delete all words should display a Dialog window asking to confirm deletion.
 - Reload orignal words, display a Dialog window asking to deletion of extisting words and reloading
 of new words.
 - Settings should include a dark mode.
+- Setting add dark mode
 
 Could also create saved preference for this mode.
 
 TODO: snack bar that asks if you sure if you want to delete a word.
 
-TODO: Navigation drawer doesn't need to do anything at this point.  
+TODO: Navigation drawer doesn't need to do anything at this point.
+
