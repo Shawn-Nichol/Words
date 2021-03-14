@@ -11,7 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.ActivityMainBinding
-import com.example.words.main.fragments.wordlist.DeleteListDialog
+import com.example.words.main.dialogs.DeleteListDialog
+import com.example.words.main.dialogs.RestoreWordListDialog
 import com.example.words.room.WordDao
 import com.example.words.room.insertDBWords
 import kotlinx.coroutines.launch
@@ -19,9 +20,11 @@ import javax.inject.Inject
 
 var TAG = "MyTest"
 
-class MainActivity : AppCompatActivity(), DeleteListDialog.DeleteListDialogListener {
+class MainActivity : AppCompatActivity(),
+    DeleteListDialog.DeleteListDialogListener,
+    RestoreWordListDialog.RestoreDialogListener {
 
-    private val newWordActivityRequestCode = 1
+
 
     @Inject
     lateinit var viewModel: MainViewModel
@@ -48,14 +51,13 @@ class MainActivity : AppCompatActivity(), DeleteListDialog.DeleteListDialogListe
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_delete_all -> {
-                    val dialog = DeleteListDialog()
+                val dialog = DeleteListDialog()
                 dialog.show(supportFragmentManager, "Delete List")
                 true
             }
             R.id.menu_restore_list -> {
-                lifecycleScope.launch {
-                    insertDBWords(wordDao).insert()
-                }
+                val dialog = RestoreWordListDialog()
+                dialog.show(supportFragmentManager, "Restore Word List")
                 true
             }
             R.id.menu_dark_mode -> {
@@ -71,5 +73,15 @@ class MainActivity : AppCompatActivity(), DeleteListDialog.DeleteListDialogListe
 
     override fun onDialogNegativeClick(dialog: DialogFragment) {
         Toast.makeText(this, "Delete all words canceled", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun restoreWordList(dialog: DialogFragment) {
+        lifecycleScope.launch {
+            insertDBWords(wordDao).insert()
+        }
+    }
+
+    override fun dontRestoreWordList(dialog: DialogFragment) {
+        Toast.makeText(this, "Don not restore original word list.", Toast.LENGTH_SHORT).show()
     }
 }

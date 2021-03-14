@@ -1,4 +1,4 @@
-package com.example.words.main.fragments.wordlist
+package com.example.words.main.dialogs
 
 import android.app.Dialog
 import android.content.Context
@@ -28,7 +28,7 @@ class DeleteListDialog : DialogFragment() {
             listener = context as DeleteListDialogListener
         } catch (e: ClassCastException) {
             // The activity doesn't implement the interface, throw
-            throw ClassCastException("$context must implment DeleteListDialogListener")
+            throw ClassCastException("$context must implement DeleteListDialogListener")
         }
     }
 
