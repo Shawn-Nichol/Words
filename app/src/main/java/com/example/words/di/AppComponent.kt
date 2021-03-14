@@ -2,9 +2,9 @@ package com.example.words.di
 
 import android.content.Context
 import com.example.words.main.MainActivity
-import com.example.words.main.details.DetailsFragment
-import com.example.words.main.newword.NewWordFragment
-import com.example.words.main.wordlist.WordListFragment
+import com.example.words.main.fragments.details.DetailsFragment
+import com.example.words.main.fragments.newword.NewWordFragment
+import com.example.words.main.fragments.wordlist.WordListFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

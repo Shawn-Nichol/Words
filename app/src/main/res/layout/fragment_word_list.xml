@@ -6,13 +6,13 @@
     <data>
         <variable
             name="binding"
-            type="com.example.words.main.wordlist.WordListFragment" />
+            type="com.example.words.main.fragments.wordlist.WordListFragment" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".main.wordlist.WordListFragment">
+        tools:context=".main.fragments.wordlist.WordListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -32,7 +32,7 @@
             android:transitionName="savedWordTransition"
             app:backgroundTint="@color/material_on_surface_emphasis_high_type"
             app:borderWidth="4dp"
-            app:layout_behavior=".main.wordlist.ui.FABBehavior" />
+            app:layout_behavior=".main.fragments.wordlist.ui.FABBehavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

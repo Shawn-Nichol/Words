@@ -1,4 +1,4 @@
-package com.example.words.main.newword
+package com.example.words.main.fragments.newword
 
 import android.content.Context
 import android.os.Bundle

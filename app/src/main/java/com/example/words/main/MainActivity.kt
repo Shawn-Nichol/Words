@@ -3,7 +3,6 @@ package com.example.words.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -12,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.ActivityMainBinding
+import com.example.words.main.fragments.wordlist.DeleteListDialog
 import com.example.words.room.WordDao
 import com.example.words.room.insertDBWords
 import kotlinx.coroutines.launch

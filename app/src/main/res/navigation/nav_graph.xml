@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dest_wordListFragment"
-        android:name="com.example.words.main.wordlist.WordListFragment"
+        android:name="com.example.words.main.fragments.wordlist.WordListFragment"
         android:label="WordListFragment"
         tools:layout="@layout/fragment_word_list">
         <action
@@ -20,12 +20,12 @@
     </fragment>
     <fragment
         android:id="@+id/dest_newWordFragment"
-        android:name="com.example.words.main.newword.NewWordFragment"
+        android:name="com.example.words.main.fragments.newword.NewWordFragment"
         android:label="NewWordFragment"
         tools:layout="@layout/fragment_new_word"/>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.words.main.details.DetailsFragment"
+        android:name="com.example.words.main.fragments.details.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details">
         <action android:id="@+id/action_dest_wordListFragment_to_detailsFragment"

@@ -1,4 +1,4 @@
-package com.example.words.main
+package com.example.words.main.fragments.wordlist
 
 import android.app.Dialog
 import android.content.Context
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.example.words.main.TAG
 import java.lang.IllegalStateException
 
 class DeleteListDialog : DialogFragment() {

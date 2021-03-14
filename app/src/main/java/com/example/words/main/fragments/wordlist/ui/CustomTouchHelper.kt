@@ -1,4 +1,4 @@
-package com.example.words.main.wordlist.ui
+package com.example.words.main.fragments.wordlist.ui
 
 import android.graphics.Color
 import androidx.recyclerview.widget.ItemTouchHelper

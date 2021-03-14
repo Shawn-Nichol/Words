@@ -1,4 +1,4 @@
-package com.example.words.main.details
+package com.example.words.main.fragments.details
 
 import android.os.Bundle
 import android.transition.TransitionInflater

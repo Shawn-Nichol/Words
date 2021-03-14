@@ -1,4 +1,4 @@
-package com.example.words.main.wordlist.ui
+package com.example.words.main.fragments.wordlist.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.words.R
-import com.example.words.main.wordlist.WordListFragmentDirections
+import com.example.words.main.fragments.wordlist.WordListFragmentDirections
 import com.example.words.room.Word
 import javax.inject.Inject
 

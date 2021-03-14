@@ -1,4 +1,4 @@
-package com.example.words.main.wordlist
+package com.example.words.main.fragments.wordlist
 
 
 import android.os.Bundle
@@ -10,15 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.SmoothScroller
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.FragmentWordListBinding
 import com.example.words.main.MainViewModel
-import com.example.words.main.wordlist.ui.CustomTouchHelper
-import com.example.words.main.wordlist.ui.RVAdapter
+import com.example.words.main.fragments.wordlist.ui.CustomTouchHelper
+import com.example.words.main.fragments.wordlist.ui.RVAdapter
 import javax.inject.Inject
 
 
