@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.example.words.MyApplication
 import com.example.words.R
@@ -17,7 +19,7 @@ import javax.inject.Inject
 
 var TAG = "MyTest"
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DeleteListDialog.DeleteListDialogListener {
 
     private val newWordActivityRequestCode = 1
 
@@ -46,7 +48,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_delete_all -> {
-                viewModel.deleteAllWords()
+                    val dialog = DeleteListDialog()
+                dialog.show(supportFragmentManager, "Delete List")
                 true
             }
             R.id.menu_restore_list -> {
@@ -60,5 +63,13 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onDialogPositiveClick(dialog: DialogFragment) {
+        viewModel.deleteAllWords()
+    }
+
+    override fun onDialogNegativeClick(dialog: DialogFragment) {
+        Toast.makeText(this, "Delete all words canceled", Toast.LENGTH_SHORT).show()
     }
 }
