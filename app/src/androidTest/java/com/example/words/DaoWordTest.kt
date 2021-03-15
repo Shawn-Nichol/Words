@@ -14,13 +14,12 @@ import com.nhaarman.mockitokotlin2.lastValue
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.Assert.assertTrue
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
 
-@ExperimentalCoroutinesApi
+
 @RunWith(AndroidJUnit4::class)
 class DaoWordTest {
 
@@ -131,12 +130,9 @@ class DaoWordTest {
         val testObserver: Observer<List<Word>> = mock()
         wordDao.getAlphabetizedWords().observeForever(testObserver)
 
-        val listClass = ArrayList::class.java as Class<ArrayList<Word>>
-
         verify(testObserver).onChanged(kotlin.collections.emptyList())
 
-
-
-
     }
+
+
 }
