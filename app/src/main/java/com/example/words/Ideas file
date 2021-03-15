@@ -1,11 +1,8 @@
 TODO: Unit Testing
 
 TODO: Setting Menu,
-- Delete all words should display a Dialog window asking to confirm deletion.
-- Reload orignal words, display a Dialog window asking to deletion of extisting words and reloading
-of new words.
 - Settings should include a dark mode.
-- Setting add dark mode
+
 
 Could also create saved preference for this mode.
 
