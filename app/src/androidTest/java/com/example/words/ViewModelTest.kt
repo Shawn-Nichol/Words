@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.words.main.MainViewModel
 import com.example.words.room.Word
 import com.example.words.room.WordDao
 import com.example.words.data.WordRepository
@@ -15,16 +16,18 @@ import org.junit.*
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RepositoryTest {
+class ViewModelTest {
 
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
 
+    lateinit var viewModel: MainViewModel
     lateinit var repository: WordRepository
-    lateinit var wordDao: WordDao
     lateinit var wordDatabase: WordRoomDatabase
+    lateinit var wordDao: WordDao
 
-    var word1 =  Word("Test")
+    var word1 = Word("Word1")
+
 
     @Before
     fun setup() {
@@ -35,9 +38,9 @@ class RepositoryTest {
             .allowMainThreadQueries()
             .build()
 
-        wordDao = mock()
-
-        repository = WordRepository(wordDao)
+        wordDao = wordDatabase.wordDao()
+        repository = mock()
+        viewModel = MainViewModel(repository)
     }
 
     @After
@@ -46,28 +49,8 @@ class RepositoryTest {
     }
 
     @Test
-    fun getAlphabetizedWords() {
-        verify(wordDao).getAlphabetizedWords()
+    fun getAlphabetizedWords() = runBlocking{
+        verify(repository.allWords)
     }
 
-    @Test
-    fun insert() = runBlocking {
-        repository.insert(word1)
-
-        verify(wordDao).insert(word1)
-    }
-
-    @Test
-    fun deleteAll() = runBlocking {
-        repository.deleteAll()
-
-        verify(wordDao).deleteAll()
-    }
-
-    @Test
-    fun deleteWord() = runBlocking {
-        repository.deleteWord(word1)
-
-        verify(wordDao).deleteWord(word1)
-    }
 }
