@@ -8,7 +8,7 @@ interface IWordRepository {
 
     suspend fun insert(word: Word)
 
-    suspend fun deleteAll()
-
     suspend fun deleteWord(word: Word)
+
+    suspend fun deleteAll()
 }

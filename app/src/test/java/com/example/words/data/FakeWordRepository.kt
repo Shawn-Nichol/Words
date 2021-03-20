@@ -8,6 +8,7 @@ import com.example.words.room.Word
 class FakeWordRepository : IWordRepository {
 
     override val allWords: LiveData<List<Word>> = MutableLiveData<List<Word>>()
+
     val listAllWords = mutableListOf<Word>()
 
 
@@ -20,7 +21,7 @@ class FakeWordRepository : IWordRepository {
     }
 
     override suspend fun deleteWord(word: Word) {
-
+        word
     }
 
 
