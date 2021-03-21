@@ -34,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="This text view is going to provide a description. I'm not sure if it is actually going to provide a description of the word seems like that may not goes as planed. "
+            android:text="@string/word_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_word" />
