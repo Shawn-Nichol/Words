@@ -30,9 +30,6 @@ class DaoWordTest {
     private lateinit var wordDatabase: WordRoomDatabase
     private lateinit var wordDao: WordDao
 
-
-
-
     @Before
     fun setup() {
         // Room Builder creates an in memory Database. Information stored in an in-memory database disappears when tests finish
@@ -94,7 +91,6 @@ class DaoWordTest {
         verify(testObserver).onChanged(argumentCaptor.capture())
         val capturedArgument = argumentCaptor.value
         assertTrue(capturedArgument.containsAll(listOf(word1, word2)))
-
     }
 
     @Test
@@ -132,7 +128,6 @@ class DaoWordTest {
 
         verify(testObserver).onChanged(kotlin.collections.emptyList())
 
+
     }
-
-
 }

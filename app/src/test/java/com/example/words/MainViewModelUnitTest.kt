@@ -9,6 +9,7 @@ import com.example.words.room.Word
 import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -16,10 +17,12 @@ import org.junit.Test
 import org.mockito.Mockito.verify
 
 @ExperimentalCoroutinesApi
-class MainViewModelTest {
+class MainViewModelUnitTest {
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
+
+    val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 
     lateinit var viewModel: MainViewModel
     lateinit var repository: FakeWordRepository
@@ -48,7 +51,6 @@ class MainViewModelTest {
 
     @Test
     fun insertWord() = runBlocking {
-        // Given Setup the objects
 
         // When action, input or output
         viewModel.insertWord(word1)

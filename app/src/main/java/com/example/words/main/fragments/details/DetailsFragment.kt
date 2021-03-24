@@ -43,7 +43,6 @@ class DetailsFragment : Fragment() {
 
         binding.tvWord.text = word
 
-
         return binding.root
     }
 }
