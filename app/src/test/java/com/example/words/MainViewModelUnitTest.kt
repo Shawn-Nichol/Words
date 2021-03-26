@@ -7,9 +7,13 @@ import com.example.words.data.FakeWordRepository
 import com.example.words.main.MainViewModel
 import com.example.words.room.Word
 import com.nhaarman.mockitokotlin2.mock
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -22,7 +26,7 @@ class MainViewModelUnitTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+
 
     lateinit var viewModel: MainViewModel
     lateinit var repository: FakeWordRepository
@@ -30,12 +34,22 @@ class MainViewModelUnitTest {
     lateinit var word1: Word
 
 
+    val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+
     @Before
     fun setup() {
         repository = mock()
-        viewModel = MainViewModel(repository)
+        viewModel = MainViewModel(repository, testDispatcher)
+
+        Dispatchers.setMain(testDispatcher)
 
         word1 = Word("Word1")
+    }
+
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+        testDispatcher.cleanupTestCoroutines()
     }
 
     @Test

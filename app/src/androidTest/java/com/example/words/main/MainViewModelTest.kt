@@ -15,7 +15,6 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.*
-import net.bytebuddy.agent.builder.AgentBuilder
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -33,23 +32,26 @@ class MainViewModelTest {
     private lateinit var wordDao: WordDao
     private lateinit var repository: IWordRepository
     private lateinit var viewModel: MainViewModel
-    lateinit var wordList: Observer<List<Word>>
+    lateinit var wordListObserver: Observer<List<Word>>
+
+    // How to mock out the mainlooper
 
     @Before
     fun setup() {
-
-
         wordDatabase = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getInstrumentation().context,
             WordRoomDatabase::class.java
-        ).build()
+        )
+            .allowMainThreadQueries()
+            .build()
 
         wordDao = wordDatabase.wordDao()
 
         repository = WordRepository(wordDao)
-        viewModel = MainViewModel(repository)
+        viewModel = MainViewModel(repository, Dispatchers.Main)
 
-        wordList = mock()
+        wordListObserver = mock()
+
 
 
     }
@@ -61,23 +63,30 @@ class MainViewModelTest {
 
     @Test
     fun getAlphabetizedWords() = runBlocking {
-
-        viewModel.wordList.observeForever(wordList)
-        verify(wordList).onChanged(emptyList())
+        viewModel.wordList.observeForever(wordListObserver)
+        verify(wordListObserver).onChanged(emptyList())
     }
+
+
 
     @Test
     fun insertWord() = runBlocking {
         val word1 = Word("Word1")
 
+
+        // The error is here,
+        // Tried using a Dispatcher.IO
+        // ViewModel inside runBlocking doesn't work
+        // TestCoroutineDispatcher only available in unit tests
+        // What about ViewModelScope
         viewModel.insertWord(word1)
 
-        viewModel.wordList.observeForever(wordList)
+        viewModel.wordList.observeForever(wordListObserver)
 
         val listClass = ArrayList::class.java as Class<ArrayList<Word>>
         val argumentCaptor = ArgumentCaptor.forClass(listClass)
 
-        verify(wordList).onChanged(argumentCaptor.capture())
+        verify(wordListObserver).onChanged(argumentCaptor.capture())
 
         assertTrue(argumentCaptor.value.size == 1)
     }
@@ -86,17 +95,17 @@ class MainViewModelTest {
     fun deleteWord() = runBlocking {
         val word1 = Word("Word1")
         val word2 = Word("Word2")
-        wordDao.insert(word1)
-        wordDao.insert(word2)
+        viewModel.insertWord(word1)
+        viewModel.insertWord(word2)
 
-        wordDao.deleteWord(word1)
+        viewModel.deleteWord(word1)
 
-        viewModel.wordList.observeForever(wordList)
+        viewModel.wordList.observeForever(wordListObserver)
 
         val listClass = ArrayList::class.java as Class<ArrayList<Word>>
         val argumentCaptor = ArgumentCaptor.forClass(listClass)
 
-        verify(wordList).onChanged(argumentCaptor.capture())
+        verify(wordListObserver).onChanged(argumentCaptor.capture())
 
 
         assertTrue(argumentCaptor.value.size == 1)

@@ -6,4 +6,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="word_description">This text view is going to provide a description. I\'m not sure if it is actually going to provide a description of the word seems like that may not goes as planed.</string>
+    <string name="Toast_no_word">No word entered</string>
 </resources>

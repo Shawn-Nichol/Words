@@ -14,7 +14,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     var repository: IWordRepository,
     @IoDispatcher var ioDispatcher: CoroutineDispatcher
-    ): ViewModel() {
+) : ViewModel() {
 
     var wordList: LiveData<List<Word>> = repository.allWords
 

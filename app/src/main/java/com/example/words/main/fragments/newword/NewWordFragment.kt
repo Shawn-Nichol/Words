@@ -43,7 +43,7 @@ class NewWordFragment : Fragment() {
     }
 
     fun saveWord() {
-        val editWordView = binding.editWord
+        val editWordView = binding.etNewWord
 
 
         if (!TextUtils.isEmpty(editWordView.text)) {
@@ -56,7 +56,7 @@ class NewWordFragment : Fragment() {
 
             findNavController().popBackStack()
         } else {
-            Toast.makeText(context, "No word entered", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.Toast_no_word), Toast.LENGTH_SHORT).show()
         }
     }
 }
