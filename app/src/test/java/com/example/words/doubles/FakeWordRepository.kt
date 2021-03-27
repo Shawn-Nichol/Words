@@ -1,8 +1,9 @@
-package com.example.words.data
+package com.example.words.doubles
 
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.words.data.IWordRepository
 import com.example.words.room.Word
 
 class FakeWordRepository : IWordRepository {

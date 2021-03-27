@@ -1,4 +1,4 @@
-package com.example.words.data
+package com.example.words.doubles
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

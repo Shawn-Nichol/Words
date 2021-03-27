@@ -1,4 +1,4 @@
-package com.example.words
+package com.example.words.data
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
@@ -6,7 +6,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.words.room.Word
 import com.example.words.room.WordDao
-import com.example.words.data.WordRepository
 import com.example.words.room.WordRoomDatabase
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -15,7 +14,7 @@ import org.junit.*
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class RepositoryTest {
+class WordRepositoryTest {
 
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()

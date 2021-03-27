@@ -48,13 +48,13 @@ class NewWordFragment : Fragment() {
 
         if (!TextUtils.isEmpty(editWordView.text)) {
             val word = Word(editWordView.text.toString())
-            viewModel.insertWord(word)
+//            viewModel.insertWord(word)
 
             // Hide keyboard
-            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view?.windowToken, 0)
-
-            findNavController().popBackStack()
+//            val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//            imm.hideSoftInputFromWindow(view?.windowToken, 0)
+//
+//            findNavController().popBackStack()
         } else {
             Toast.makeText(context, getString(R.string.Toast_no_word), Toast.LENGTH_SHORT).show()
         }

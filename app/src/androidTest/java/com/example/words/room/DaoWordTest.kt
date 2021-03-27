@@ -1,4 +1,4 @@
-package com.example.words
+package com.example.words.room
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
@@ -6,9 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.words.room.Word
-import com.example.words.room.WordDao
-import com.example.words.room.WordRoomDatabase
 import com.nhaarman.mockitokotlin2.firstValue
 import com.nhaarman.mockitokotlin2.lastValue
 import com.nhaarman.mockitokotlin2.mock
