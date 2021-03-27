@@ -6,6 +6,7 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import com.example.words.R
+import org.junit.After
 import org.junit.Assert
 import org.junit.Assert.*
 import org.junit.Before
@@ -23,6 +24,11 @@ class NewWordFragmentUnitTest {
     @Before
     fun setup() {
         FragmentScenario.Companion.launchInContainer(NewWordFragment::class.java)
+    }
+
+    @After
+    fun close() {
+
     }
 
     @Test
@@ -58,6 +64,7 @@ class NewWordFragmentUnitTest {
     fun saveButton_insertWord() {
         Espresso.onView(ViewMatchers.withId(newWord)).perform(ViewActions.typeText("New Word"))
         Espresso.onView(ViewMatchers.withId(saveButton)).perform(ViewActions.click())
+        // TODO insert mock ViewModel
     }
 
     @Test
