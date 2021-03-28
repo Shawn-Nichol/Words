@@ -23,48 +23,13 @@ import org.junit.runner.RunWith
 class DetailsFragmentTest {
 
 
-    lateinit var bundle: Bundle
 
     @Before
     fun setup() {
-        // When
-        bundle = DetailsFragmentArgs("Test").toBundle()
-        launchFragmentInContainer<DetailsFragment>(bundle, R.style.Theme_Words)
-    }
-
-    @Test
-    fun detailsActive() {
-        // given
-
-        // when details fragment launched to display
-        launchFragmentInContainer<DetailsFragment>(bundle, R.style.Theme_Words)
-    }
-
-
-    @Test
-    fun detailsFragment_Active_titleSet() {
-        // Then
-        onView(withId(R.id.tv_word)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_word)).check(matches(withText("Test")))
-    }
-
-    @Test
-    fun detailsFragment_Active_SetDescription() {
-        onView(withId(R.id.tv_word_description)).check(matches(isDisplayed()))
-        onView(withId(R.id.tv_word_description)).check(matches(withText(R.string.word_description)))
-    }
-
-    @Test
-    fun getAndSetWord() {
-        // when details fragment launched to display
-        val bundle = DetailsFragmentArgs("Test").toBundle()
-
-        val myFragment = DetailsFragment()
-        myFragment.word = "Test"
-
-        assertEquals(myFragment.word, bundle.get("Word"))
 
     }
+
+
 
 
 }

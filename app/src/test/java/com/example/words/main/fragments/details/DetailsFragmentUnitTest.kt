@@ -23,6 +23,7 @@ class DetailsFragmentUnitTest {
 
     @Before
     fun setup() {
+        bundle = DetailsFragmentArgs("Test").toBundle()
         launchFragmentInContainer<DetailsFragment>(bundle, R.style.Theme_Words)
     }
 

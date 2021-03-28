@@ -1,18 +1,17 @@
-package com.example.words
+package com.example.words.data
 
 import com.example.words.doubles.FakeDao
-import com.example.words.data.WordRepository
 import com.example.words.room.Word
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
 class WordRepositoryUnitTest {
-
     lateinit var repository: WordRepository
     lateinit var wordDao: FakeDao
     var word1 = Word("Word1")
@@ -65,7 +64,5 @@ class WordRepositoryUnitTest {
         // Then result
         verify(wordDao).deleteAll()
     }
-
-
 
 }
