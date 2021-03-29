@@ -28,14 +28,16 @@ class DetailsFragmentUnitTest {
 
     @Test
     fun `TextView Title visible`() {
-        onView(withId(title)).check(matches(isDisplayed()))
-        onView(withId(title)).check(matches((withText("Test"))))
+        onView(withId(title))
+            .check(matches(isDisplayed()))
+            .check(matches((withText("Test"))))
     }
 
     @Test
     fun `TextView Word Description visible`() {
-        onView(withId(wordDescription)).check(matches(isDisplayed()))
-        onView(withId(wordDescription)).check(matches(withText(R.string.word_description)))
+        onView(withId(wordDescription))
+            .check(matches(isDisplayed()))
+            .check(matches(withText(R.string.word_description)))
     }
 
     @Test

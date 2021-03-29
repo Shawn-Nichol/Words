@@ -31,14 +31,14 @@ class NewWordFragmentUnitTest {
     }
 
     @Test
-    fun newWord_visible() {
+    fun `new Word is visible`() {
       checkNewWord
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             .check(ViewAssertions.matches(ViewMatchers.isClickable()))
     }
 
     @Test
-    fun newWord_enterText() {
+    fun `new word text entered`() {
         checkNewWord
             .perform(ViewActions.typeText("New Word"), ViewActions.closeSoftKeyboard())
             .check(ViewAssertions.matches(ViewMatchers.withText("New Word")))
@@ -53,7 +53,7 @@ class NewWordFragmentUnitTest {
     }
 
     @Test
-    fun saveButton_insertWord() {
+    fun `save Button new word entered`() {
         checkNewWord.perform(ViewActions.typeText("New Word"))
         checkSaveButton.perform(ViewActions.click())
 
@@ -64,7 +64,7 @@ class NewWordFragmentUnitTest {
     }
 
     @Test
-    fun saveButton_NoNewWord_ShowToast() {
+    fun `saveButton No New Word Show Toast`() {
         checkSaveButton.perform(ViewActions.click())
 
         val toast = "No word entered"

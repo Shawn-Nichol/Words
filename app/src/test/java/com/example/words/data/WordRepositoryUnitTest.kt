@@ -23,15 +23,15 @@ class WordRepositoryUnitTest {
         repository = WordRepository(wordDao)
     }
 
-//    @Test
-//    fun allWords() = runBlocking {
-//        // Get the object
-//
-//        // When action
+    @Test
+    fun allWords() = runBlocking {
+        // Get the object
+
+        // When action
 //        repository.allWords
-//        // Then results
+        // Then results
 //        verify(wordDao).getAlphabetizedWords()
-//    }
+    }
 
     @Test
     fun insert() = runBlocking {
