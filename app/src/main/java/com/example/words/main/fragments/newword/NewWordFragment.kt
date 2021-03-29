@@ -1,6 +1,7 @@
 package com.example.words.main.fragments.newword
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -59,4 +60,5 @@ class NewWordFragment : Fragment() {
             Toast.makeText(context, getString(R.string.Toast_no_word), Toast.LENGTH_SHORT).show()
         }
     }
+
 }

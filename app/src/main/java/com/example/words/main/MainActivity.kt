@@ -1,5 +1,6 @@
 package com.example.words.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -84,4 +85,6 @@ class MainActivity : AppCompatActivity(),
     override fun dontRestoreWordList(dialog: DialogFragment) {
         Toast.makeText(this, "Don not restore original word list.", Toast.LENGTH_SHORT).show()
     }
+
+
 }
