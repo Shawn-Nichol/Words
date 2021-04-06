@@ -14,11 +14,9 @@ import com.example.words.main.MainViewModel
 import javax.inject.Inject
 
 
-class DetailsFragment : Fragment() {
+class DetailsFragment(private val viewModel: MainViewModel) : Fragment() {
 
 
-    @Inject
-    lateinit var viewModel: MainViewModel
 
     lateinit var binding: FragmentDetailsBinding
     var word: String = ""

@@ -7,6 +7,7 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import com.example.words.R
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -56,6 +57,8 @@ class NewWordFragmentUnitTest {
     fun `save Button new word entered`() {
         checkNewWord.perform(ViewActions.typeText("New Word"))
         checkSaveButton.perform(ViewActions.click())
+
+        // Todo The ViewModel in the fragment is stopping the test.
 
         val toast = "No word entered"
 

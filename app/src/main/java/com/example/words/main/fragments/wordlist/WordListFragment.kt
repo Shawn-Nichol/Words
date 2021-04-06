@@ -2,6 +2,7 @@ package com.example.words.main.fragments.wordlist
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,11 +21,7 @@ import com.example.words.main.fragments.wordlist.ui.RVAdapter
 import javax.inject.Inject
 
 
-class WordListFragment : Fragment() {
-
-
-    @Inject
-    lateinit var viewModel: MainViewModel
+class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
 
     @Inject
     lateinit var rvAdapter: RVAdapter
@@ -79,6 +76,7 @@ class WordListFragment : Fragment() {
     private fun submitList() {
         viewModel.wordList.observe(viewLifecycleOwner, {
             it?.let {
+                Log.i("Prac", "Submit list")
                 rvAdapter.submitList(it)
             }
         })

@@ -74,7 +74,7 @@ class MainViewModelTest {
     fun insertWord() = runBlocking {
         val word1 = Word("Word1")
 
-
+        viewModel.wordList.observeForever(wordListObserver)
         // The error is here,
         // Tried using a Dispatcher.IO
         // ViewModel inside runBlocking doesn't work
@@ -82,7 +82,7 @@ class MainViewModelTest {
         // What about ViewModelScope
         viewModel.insertWord(word1)
 
-        viewModel.wordList.observeForever(wordListObserver)
+
 
         val listClass = ArrayList::class.java as Class<ArrayList<Word>>
         val argumentCaptor = ArgumentCaptor.forClass(listClass)

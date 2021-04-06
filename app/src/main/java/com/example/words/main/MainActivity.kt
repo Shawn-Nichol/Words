@@ -1,14 +1,19 @@
 package com.example.words.main
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.ActivityMainBinding
@@ -38,9 +43,17 @@ class MainActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as MyApplication).appComponent.inject(this)
+        supportFragmentManager.fragmentFactory = MainFragmentFactory(viewModel)
+
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.binding = this
+
+
+        setSupportActionBar(findViewById(R.id.my_toolbar))
+        val navHostFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        val navController = navHostFragment!!.findNavController()
+        NavigationUI.setupActionBarWithNavController(this, navController)
 
     }
 
@@ -84,6 +97,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun dontRestoreWordList(dialog: DialogFragment) {
         Toast.makeText(this, "Don not restore original word list.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return findNavController(R.id.nav_host_fragment).navigateUp()
     }
 
 
