@@ -1,17 +1,23 @@
 package com.example.words.main.fragments.newword
 
 import androidx.fragment.app.testing.FragmentScenario
+import androidx.fragment.app.testing.launchFragmentInContainer
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import com.example.words.R
-import kotlinx.coroutines.test.runBlockingTest
+import com.example.words.main.MainFragmentFactory
+import com.example.words.main.MainViewModel
+
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mockito.mock
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.shadows.ShadowToast
 
@@ -24,9 +30,21 @@ class NewWordFragmentUnitTest {
     private lateinit var checkNewWord: ViewInteraction
     private lateinit var checkSaveButton: ViewInteraction
 
+    private lateinit var scenario: FragmentScenario<NewWordFragment>
+
+    val mockNavController = mock(NavController::class.java)
+
     @Before
     fun setup() {
-        FragmentScenario.Companion.launchInContainer(NewWordFragment::class.java)
+
+        val viewModel: MainViewModel = mock(MainViewModel::class.java)
+
+        scenario = launchFragmentInContainer(
+            factory = MainFragmentFactory(viewModel),
+            fragmentArgs = null,
+            themeResId = R.style.Theme_Words
+        )
+
         checkNewWord = onView(ViewMatchers.withId(newWord))
         checkSaveButton = onView(ViewMatchers.withId(saveButton))
     }
@@ -54,11 +72,15 @@ class NewWordFragmentUnitTest {
     }
 
     @Test
-    fun `save Button new word entered`() {
+    fun `save Word Button new word entered`() {
+        // If you don't the set a mock NavController, findNavController in saveWord() will through a
+        // error.
+        scenario.onFragment { fragment ->
+            Navigation.setViewNavController(fragment.requireView(), mockNavController)
+        }
+
         checkNewWord.perform(ViewActions.typeText("New Word"))
         checkSaveButton.perform(ViewActions.click())
-
-        // Todo The ViewModel in the fragment is stopping the test.
 
         val toast = "No word entered"
 
@@ -67,7 +89,7 @@ class NewWordFragmentUnitTest {
     }
 
     @Test
-    fun `saveButton No New Word Show Toast`() {
+    fun `save Word Button No New Word Show Toast`() {
         checkSaveButton.perform(ViewActions.click())
 
         val toast = "No word entered"

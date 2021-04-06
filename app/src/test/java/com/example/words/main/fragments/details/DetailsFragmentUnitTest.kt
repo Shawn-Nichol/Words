@@ -25,8 +25,7 @@ import org.robolectric.RobolectricTestRunner
 @RunWith(RobolectricTestRunner::class)
 class DetailsFragmentUnitTest {
 
-    @get:Rule
-    val instantExecutorRule = InstantTaskExecutorRule()
+
 
     lateinit var bundle: Bundle
 
@@ -40,7 +39,7 @@ class DetailsFragmentUnitTest {
         val viewModel: MainViewModel = mock(MainViewModel::class.java)
         bundle = DetailsFragmentArgs("Test").toBundle()
 
-        scenario  = launchFragmentInContainer<DetailsFragment>(
+        scenario  = launchFragmentInContainer(
             factory = MainFragmentFactory(viewModel),
             fragmentArgs = bundle,
             themeResId = R.style.Theme_Words
