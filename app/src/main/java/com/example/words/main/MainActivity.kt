@@ -9,6 +9,7 @@ import android.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.binding = this
-
+        ViewModelProvider(this).get(MainViewModel::class.java)
 
         setSupportActionBar(findViewById(R.id.my_toolbar))
         val navHostFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)

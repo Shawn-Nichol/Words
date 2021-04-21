@@ -68,7 +68,8 @@ class MainViewModelTest {
     }
 
 
-    // TODO the something wrong with insert here, works fine when the app is running
+    // TODO there is something wrong with insert here,
+    //  works fine when the app is running
 
     @Test
     fun insertWord() = runBlocking {
