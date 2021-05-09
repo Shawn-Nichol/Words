@@ -7,7 +7,6 @@ import androidx.fragment.app.testing.launchFragment
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.words.R
@@ -52,8 +51,7 @@ class DetailsFragmentUnitTest {
     @Test
     fun `TextView Title visible`() {
         onView(withId(title))
-            .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
-
+            .check(matches(isDisplayed()))
             .check(matches((withText("Test"))))
     }
 
