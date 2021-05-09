@@ -11,7 +11,6 @@ import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.FragmentDetailsBinding
 import com.example.words.main.MainViewModel
-import javax.inject.Inject
 
 
 class DetailsFragment(private val viewModel: MainViewModel) : Fragment() {
@@ -27,7 +26,7 @@ class DetailsFragment(private val viewModel: MainViewModel) : Fragment() {
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
 
         val args = DetailsFragmentArgs.fromBundle(requireArguments())
-        word = args.Word
+        word = args.word
 
     }
 
@@ -35,9 +34,9 @@ class DetailsFragment(private val viewModel: MainViewModel) : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
-        binding.binding = this
+        binding.bin
 
         binding.tvWord.text = word
 

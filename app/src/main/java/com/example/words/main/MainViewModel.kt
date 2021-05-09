@@ -17,7 +17,7 @@ class MainViewModel @Inject constructor(
     // This is the job for all coroutines tarted by this ViewModel
     private val viewModelJob = SupervisorJob()
 
-    // This is the main scope for all coroutines launched by MainViewMdoel.
+    // This is the main scope for all coroutines launched by MainViewModel.
     private val uiScope = CoroutineScope(ioDispatcher +  viewModelJob)
 
     var wordList: LiveData<List<Word>> = repository.allWords
@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        // This cancels all Coroutines that use viewModel job when the ViewModel is closed.
+        // This cancels all Coroutines that use the viewModelJob when the ViewModel is closed.
         viewModelJob.cancel()
     }
 }

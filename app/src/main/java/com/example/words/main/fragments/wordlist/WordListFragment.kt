@@ -86,4 +86,6 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
         val action = R.id.action_wordListFragment_to_newWordFragment
         findNavController().navigate(action)
     }
+
+    //TODO move menu to fragment, so other fragments can't access the menu.
 }

@@ -11,7 +11,6 @@ import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -20,15 +19,17 @@ import org.mockito.Mockito
 @ExperimentalCoroutinesApi
 class MainViewModelUnitTest {
 
+    // Runs livedata on the main UI thread and waits for results.
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var viewModel: MainViewModel
-    lateinit var repository: FakeWordRepository
+    private lateinit var viewModel: MainViewModel
+    private lateinit var repository: FakeWordRepository
 
-    lateinit var word1: Word
+    private lateinit var word1: Word
 
-    val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
+    // Passes a Test dispatcher into the ViewModel for testing coroutine scopes.
+    private val testDispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()
 
     @Before
     fun setup() {
@@ -47,27 +48,28 @@ class MainViewModelUnitTest {
     }
 
     @Test
-    fun wordList() {
+    fun `get word list from repository`() {
         // Given
 
         // When action
         viewModel.wordList
 
-        // action
+        // Then
         Mockito.verify(repository).allWords
     }
 
     @Test
-    fun insertWord() = runBlocking {
+    fun `insert a word to the database`() = runBlocking {
 
         // When action, input or output
         viewModel.insertWord(word1)
 
+        // Then
         Mockito.verify(repository).insert(word1)
     }
 
     @Test
-    fun deleteWord() = runBlocking {
+    fun `delete a word from the database`() = runBlocking {
         // Given, setup objects
 
         // When action
@@ -78,7 +80,7 @@ class MainViewModelUnitTest {
     }
 
     @Test
-    fun deleteAllWords() = runBlocking {
+    fun `delete all the  word from the database`() = runBlocking {
         // Given, setup objects
 
         // When action

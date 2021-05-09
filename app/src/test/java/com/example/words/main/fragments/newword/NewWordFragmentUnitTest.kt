@@ -5,10 +5,9 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewInteraction
-import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions
-import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.words.R
 import com.example.words.main.MainFragmentFactory
 import com.example.words.main.MainViewModel
@@ -24,15 +23,9 @@ import org.robolectric.shadows.ShadowToast
 @RunWith(RobolectricTestRunner::class)
 class NewWordFragmentUnitTest {
 
-    private val newWord = R.id.et_new_word
-    private val saveButton = R.id.button_save
-
-    private lateinit var checkNewWord: ViewInteraction
-    private lateinit var checkSaveButton: ViewInteraction
-
     private lateinit var scenario: FragmentScenario<NewWordFragment>
 
-    val mockNavController = mock(NavController::class.java)
+    private val mockNavController = mock(NavController::class.java)!!
 
     @Before
     fun setup() {
@@ -44,31 +37,28 @@ class NewWordFragmentUnitTest {
             fragmentArgs = null,
             themeResId = R.style.Theme_Words
         )
-
-        checkNewWord = onView(ViewMatchers.withId(newWord))
-        checkSaveButton = onView(ViewMatchers.withId(saveButton))
     }
 
     @Test
     fun `new Word is visible`() {
-      checkNewWord
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-            .check(ViewAssertions.matches(ViewMatchers.isClickable()))
+      onView(withId(R.id.et_new_word))
+            .check(ViewAssertions.matches(isDisplayed()))
+            .check(ViewAssertions.matches(isClickable()))
     }
 
     @Test
     fun `new word text entered`() {
-        checkNewWord
-            .perform(ViewActions.typeText("New Word"), ViewActions.closeSoftKeyboard())
-            .check(ViewAssertions.matches(ViewMatchers.withText("New Word")))
+        onView(withId(R.id.et_new_word))
+            .perform(typeText("New Word"), closeSoftKeyboard())
+            .check(ViewAssertions.matches(withText("New Word")))
     }
 
     @Test
     fun saveButton() {
-        checkSaveButton
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-            .check(ViewAssertions.matches(ViewMatchers.isClickable()))
-            .check(ViewAssertions.matches(ViewMatchers.withText("Save")))
+        onView(withId(R.id.button_save))
+            .check(ViewAssertions.matches(isDisplayed()))
+            .check(ViewAssertions.matches(isClickable()))
+            .check(ViewAssertions.matches(withText("Save")))
     }
 
     @Test
@@ -79,8 +69,11 @@ class NewWordFragmentUnitTest {
             Navigation.setViewNavController(fragment.requireView(), mockNavController)
         }
 
-        checkNewWord.perform(ViewActions.typeText("New Word"))
-        checkSaveButton.perform(ViewActions.click())
+        onView(withId(R.id.et_new_word))
+            .perform(typeText("New Word"))
+
+        onView(withId(R.id.button_save))
+            .perform(click())
 
         val toast = "No word entered"
 
@@ -90,7 +83,9 @@ class NewWordFragmentUnitTest {
 
     @Test
     fun `save Word Button No New Word Show Toast`() {
-        checkSaveButton.perform(ViewActions.click())
+        // TODO replace with a Snackbar.
+        onView(withId(R.id.button_save))
+            .perform(click())
 
         val toast = "No word entered"
 
@@ -98,4 +93,6 @@ class NewWordFragmentUnitTest {
         assertEquals(ShadowToast.getTextOfLatestToast(), "No word entered")
         assertEquals(ShadowToast.shownToastCount(), 1)
     }
+
+    //TODO add back button press
 }
