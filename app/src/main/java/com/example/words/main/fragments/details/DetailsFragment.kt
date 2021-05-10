@@ -26,7 +26,7 @@ class DetailsFragment(private val viewModel: MainViewModel) : Fragment() {
         sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
 
         val args = DetailsFragmentArgs.fromBundle(requireArguments())
-        word = args.word
+        word = args.keyWord
 
     }
 
@@ -34,9 +34,9 @@ class DetailsFragment(private val viewModel: MainViewModel) : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
-        binding.bin
+        binding.binding = this
 
         binding.tvWord.text = word
 

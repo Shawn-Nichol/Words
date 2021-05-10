@@ -26,13 +26,13 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.words.main.fragments.details.DetailsFragment"
-        android:label="fragment_details"
+        android:label="Word Details"
         tools:layout="@layout/fragment_details">
         <action android:id="@+id/action_dest_wordListFragment_to_detailsFragment"
             app:destination="@+id/action_dest_wordListFragment_to_detailsFragment"/>
 
         <argument
-            android:name="Word"
+            android:name="key_word"
             app:argType="string"/>
 
     </fragment>
