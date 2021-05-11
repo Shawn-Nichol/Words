@@ -3,9 +3,7 @@ package com.example.words.main.fragments.wordlist
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,6 +14,8 @@ import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.FragmentWordListBinding
 import com.example.words.main.MainViewModel
+import com.example.words.main.dialogs.DeleteListDialog
+import com.example.words.main.dialogs.RestoreWordListDialog
 import com.example.words.main.fragments.wordlist.ui.CustomTouchHelper
 import com.example.words.main.fragments.wordlist.ui.RVAdapter
 import javax.inject.Inject
@@ -32,7 +32,7 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
         super.onCreate(savedInstanceState)
-
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -47,6 +47,28 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
         submitList()
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater){
+        inflater.inflate(R.menu.word_list_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_delete_all -> {
+                findNavController().navigate(R.id.action_dest_wordListFragment_to_deleteListDialog)
+                true
+            }
+            R.id.menu_restore_list -> {
+                findNavController().navigate(R.id.action_dest_wordListFragment_to_restoreWordListDialog)
+                true
+            }
+            R.id.menu_dark_mode -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initRecyclerView() {

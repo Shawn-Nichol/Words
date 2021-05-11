@@ -57,30 +57,6 @@ class MainActivity : AppCompatActivity(),
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_delete_all -> {
-                val dialog = DeleteListDialog()
-                dialog.show(supportFragmentManager, "Delete List")
-                true
-            }
-            R.id.menu_restore_list -> {
-                val dialog = RestoreWordListDialog()
-                dialog.show(supportFragmentManager, "Restore Word List")
-                true
-            }
-            R.id.menu_dark_mode -> {
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     override fun onDialogPositiveClick(dialog: DialogFragment) {
         viewModel.deleteAllWords()
     }

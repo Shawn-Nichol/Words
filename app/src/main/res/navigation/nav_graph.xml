@@ -15,7 +15,13 @@
             app:destination="@id/dest_newWordFragment" />
         <action
             android:id="@+id/action_dest_wordListFragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/dest_detailsFragment" />
+        <action
+            android:id="@+id/action_dest_wordListFragment_to_deleteListDialog"
+            app:destination="@id/dest_deleteListDialog" />
+        <action
+            android:id="@+id/action_dest_wordListFragment_to_restoreWordListDialog"
+            app:destination="@id/dest_restoreWordListDialog" />
 
     </fragment>
     <fragment
@@ -24,7 +30,7 @@
         android:label="NewWordFragment"
         tools:layout="@layout/fragment_new_word"/>
     <fragment
-        android:id="@+id/detailsFragment"
+        android:id="@+id/dest_detailsFragment"
         android:name="com.example.words.main.fragments.details.DetailsFragment"
         android:label="Word Details"
         tools:layout="@layout/fragment_details">
@@ -36,4 +42,12 @@
             app:argType="string"/>
 
     </fragment>
+    <dialog
+        android:id="@+id/dest_deleteListDialog"
+        android:name="com.example.words.main.dialogs.DeleteListDialog"
+        android:label="DeleteListDialog" />
+    <dialog
+        android:id="@+id/dest_restoreWordListDialog"
+        android:name="com.example.words.main.dialogs.RestoreWordListDialog"
+        android:label="RestoreWordListDialog" />
 </navigation>
