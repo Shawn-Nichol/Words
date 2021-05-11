@@ -5,4 +5,7 @@
     <string name="button_save">Save</string>
     <string name="word_description">This text view is going to provide a description. I\'m not sure if it is actually going to provide a description of the word seems like that may not goes as planed.</string>
     <string name="Toast_no_word">No word entered</string>
+    <string name="delete_words">Delete Words</string>
+    <string name="restore_list">Restore List</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

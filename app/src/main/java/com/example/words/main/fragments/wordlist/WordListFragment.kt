@@ -13,9 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.FragmentWordListBinding
+import com.example.words.main.MainFragmentFactory
 import com.example.words.main.MainViewModel
-import com.example.words.main.dialogs.DeleteListDialog
-import com.example.words.main.dialogs.RestoreWordListDialog
 import com.example.words.main.fragments.wordlist.ui.CustomTouchHelper
 import com.example.words.main.fragments.wordlist.ui.RVAdapter
 import javax.inject.Inject
@@ -31,6 +30,7 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (requireActivity().application as MyApplication).appComponent.inject(this)
+        requireActivity().supportFragmentManager.fragmentFactory = MainFragmentFactory(viewModel)
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
@@ -39,8 +39,9 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_word_list, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.binding = this
 
         initRecyclerView()
@@ -85,7 +86,7 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
             val customItemTouchHelper = ItemTouchHelper(CustomTouchHelper(viewModel))
             customItemTouchHelper.attachToRecyclerView(recyclerView)
 
-            // Delay Transition on backpress.
+            // Delay Transition on back press.
             postponeEnterTransition()
             viewTreeObserver.addOnPreDrawListener {
                 startPostponedEnterTransition()
@@ -95,19 +96,24 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
         }
     }
 
+    /**
+     * submitList, submits the list of words to the adapter so the DiffUtils can load the items.
+     */
     private fun submitList() {
         viewModel.wordList.observe(viewLifecycleOwner, {
             it?.let {
-                Log.i("Prac", "Submit list")
                 rvAdapter.submitList(it)
             }
         })
     }
 
+    /**
+     * Used to create a new Word.
+     */
     fun fabNewWord() {
         val action = R.id.action_wordListFragment_to_newWordFragment
         findNavController().navigate(action)
     }
 
-    //TODO move menu to fragment, so other fragments can't access the menu.
+
 }
