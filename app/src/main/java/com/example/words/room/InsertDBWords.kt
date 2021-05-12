@@ -6,10 +6,6 @@ import javax.inject.Inject
 
 class InsertDBWords @Inject constructor (val wordDao: WordDao) {
 
-    init {
-        Log.i("Practice", "InsertDBWords.")
-    }
-
     suspend fun insert() {
         // Add sample words.
 

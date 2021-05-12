@@ -25,7 +25,7 @@ class FakeWordRepository : IWordRepository {
         word
     }
 
-    override fun restore() {
+    override suspend fun restore() {
 
     }
 

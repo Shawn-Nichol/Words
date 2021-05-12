@@ -14,7 +14,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
+import org.mockito.Mockito.*
 
 @ExperimentalCoroutinesApi
 class MainViewModelUnitTest {
@@ -55,7 +55,7 @@ class MainViewModelUnitTest {
         viewModel.wordList
 
         // Then
-        Mockito.verify(repository).allWords
+        verify(repository).allWords
     }
 
     @Test
@@ -65,7 +65,7 @@ class MainViewModelUnitTest {
         viewModel.insertWord(word1)
 
         // Then
-        Mockito.verify(repository).insert(word1)
+        verify(repository).insert(word1)
     }
 
     @Test
@@ -76,7 +76,7 @@ class MainViewModelUnitTest {
         viewModel.deleteWord(word1)
 
         // Then results
-        Mockito.verify(repository).deleteWord(word1)
+        verify(repository).deleteWord(word1)
     }
 
     @Test
@@ -87,6 +87,13 @@ class MainViewModelUnitTest {
         viewModel.deleteAllWords()
 
         // Then results
-        Mockito.verify(repository).deleteAll()
+        verify(repository).deleteAll()
+    }
+
+    @Test
+    fun `restore original words in database`() = runBlocking {
+        viewModel.restoreList()
+
+        verify(repository).restore()
     }
 }

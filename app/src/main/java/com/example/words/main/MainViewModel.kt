@@ -36,7 +36,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun restoreList() = viewModelScope.launch {
-        Log.i("Practice", "restore")
         repository.restore()
     }
 
