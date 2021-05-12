@@ -44,16 +44,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-//    override fun restoreWordList(dialog: DialogFragment) {
-//        lifecycleScope.launch {
-//            insertDBWords(wordDao).insert()
-//        }
-//    }
-//
-//    override fun dontRestoreWordList(dialog: DialogFragment) {
-//        Toast.makeText(this, "Don not restore original word list.", Toast.LENGTH_SHORT).show()
-//    }
-
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp()
     }
