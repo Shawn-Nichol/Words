@@ -1,5 +1,6 @@
 package com.example.words.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.words.data.IWordRepository
@@ -35,9 +36,8 @@ class MainViewModel @Inject constructor(
     }
 
     fun restoreList() = viewModelScope.launch {
+        Log.i("Practice", "restore")
         repository.restore()
-
-
     }
 
     override fun onCleared() {

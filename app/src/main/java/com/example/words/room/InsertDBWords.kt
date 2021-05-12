@@ -1,17 +1,19 @@
 package com.example.words.room
 
 
+import android.util.Log
 import javax.inject.Inject
 
 class InsertDBWords @Inject constructor (val wordDao: WordDao) {
 
+    init {
+        Log.i("Practice", "InsertDBWords.")
+    }
 
     suspend fun insert() {
         // Add sample words.
 
         var word = Word("Hello")
-        wordDao.insert(word)
-        word = Word("Word 05")
         wordDao.insert(word)
         word = Word("World!")
         wordDao.insert(word)
@@ -21,7 +23,8 @@ class InsertDBWords @Inject constructor (val wordDao: WordDao) {
         wordDao.insert(word)
         word = Word("Word 04")
         wordDao.insert(word)
-
+        word = Word("Word 05")
+        wordDao.insert(word)
         word = Word("Word 06")
         wordDao.insert(word)
         word = Word("Word 07")

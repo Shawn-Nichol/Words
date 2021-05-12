@@ -22,7 +22,7 @@ class WordRepository @Inject constructor(private val wordDao: WordDao) : IWordRe
         wordDao.deleteWord(word)
     }
 
-    override fun restore() {
-        InsertDBWords(wordDao)
+    override suspend fun restore() {
+        InsertDBWords(wordDao).insert()
     }
 }
