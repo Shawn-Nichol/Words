@@ -1,6 +1,7 @@
 package com.example.words.data
 
 import androidx.lifecycle.LiveData
+import com.example.words.room.InsertDBWords
 import com.example.words.room.Word
 import com.example.words.room.WordDao
 import javax.inject.Inject
@@ -19,5 +20,9 @@ class WordRepository @Inject constructor(private val wordDao: WordDao) : IWordRe
 
     override suspend fun deleteWord(word: Word) {
         wordDao.deleteWord(word)
+    }
+
+    override fun restore() {
+        InsertDBWords(wordDao)
     }
 }

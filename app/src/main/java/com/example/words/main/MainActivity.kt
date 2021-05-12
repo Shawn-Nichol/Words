@@ -2,33 +2,20 @@ package com.example.words.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.navigateUp
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.ActivityMainBinding
-import com.example.words.main.dialogs.DeleteListDialog
-import com.example.words.main.dialogs.RestoreWordListDialog
 import com.example.words.room.WordDao
-import com.example.words.room.insertDBWords
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 var TAG = "MyTest"
 
-class MainActivity : AppCompatActivity(),
-    DeleteListDialog.DeleteListDialogListener,
-    RestoreWordListDialog.RestoreDialogListener {
+class MainActivity : AppCompatActivity() {
 
 
 
@@ -57,23 +44,15 @@ class MainActivity : AppCompatActivity(),
 
     }
 
-    override fun onDialogPositiveClick(dialog: DialogFragment) {
-        viewModel.deleteAllWords()
-    }
-
-    override fun onDialogNegativeClick(dialog: DialogFragment) {
-        Toast.makeText(this, "Delete all words canceled", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun restoreWordList(dialog: DialogFragment) {
-        lifecycleScope.launch {
-            insertDBWords(wordDao).insert()
-        }
-    }
-
-    override fun dontRestoreWordList(dialog: DialogFragment) {
-        Toast.makeText(this, "Don not restore original word list.", Toast.LENGTH_SHORT).show()
-    }
+//    override fun restoreWordList(dialog: DialogFragment) {
+//        lifecycleScope.launch {
+//            insertDBWords(wordDao).insert()
+//        }
+//    }
+//
+//    override fun dontRestoreWordList(dialog: DialogFragment) {
+//        Toast.makeText(this, "Don not restore original word list.", Toast.LENGTH_SHORT).show()
+//    }
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp()

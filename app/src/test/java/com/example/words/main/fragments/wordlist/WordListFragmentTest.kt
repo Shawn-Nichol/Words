@@ -47,7 +47,7 @@ class WordListFragmentTest {
             initialState = Lifecycle.State.RESUMED
         )
 
-        // Todo all test currently pass but there some probelm with the main looper causing the tests to fail.
+        // Todo all test currently pass but there some problem with the main looper causing the tests to fail.
     }
 
     @Test

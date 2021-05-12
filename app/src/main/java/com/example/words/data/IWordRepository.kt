@@ -11,4 +11,6 @@ interface IWordRepository {
     suspend fun deleteWord(word: Word)
 
     suspend fun deleteAll()
+
+    fun restore()
 }

@@ -2,10 +2,10 @@ package com.example.words.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.words.data.IWordRepository
 import com.example.words.room.Word
 import com.example.words.di.IoDispatcher
+import com.example.words.room.InsertDBWords
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
@@ -18,20 +18,26 @@ class MainViewModel @Inject constructor(
     private val viewModelJob = SupervisorJob()
 
     // This is the main scope for all coroutines launched by MainViewModel.
-    private val uiScope = CoroutineScope(ioDispatcher +  viewModelJob)
+    private val viewModelScope = CoroutineScope(ioDispatcher +  viewModelJob)
 
     var wordList: LiveData<List<Word>> = repository.allWords
 
-    fun insertWord(word: Word) = uiScope.launch {
+    fun insertWord(word: Word) = viewModelScope.launch {
         repository.insert(word)
     }
 
-    fun deleteWord(word: Word) = uiScope.launch {
+    fun deleteWord(word: Word) = viewModelScope.launch {
         repository.deleteWord(word)
     }
 
-    fun deleteAllWords() = uiScope.launch {
+    fun deleteAllWords() = viewModelScope.launch {
         repository.deleteAll()
+    }
+
+    fun restoreList() = viewModelScope.launch {
+        repository.restore()
+
+
     }
 
     override fun onCleared() {

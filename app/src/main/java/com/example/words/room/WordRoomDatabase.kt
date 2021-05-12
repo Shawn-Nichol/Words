@@ -24,7 +24,7 @@ abstract class WordRoomDatabase : RoomDatabase() {
                     // Delete all content
                     wordDao.deleteAll()
 
-                    insertDBWords(wordDao).insert()
+                    InsertDBWords(wordDao).insert()
                 }
             }
         }

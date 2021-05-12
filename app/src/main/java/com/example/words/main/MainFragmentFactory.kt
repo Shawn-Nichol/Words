@@ -2,6 +2,8 @@ package com.example.words.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import com.example.words.main.dialogs.DeleteListDialog
+import com.example.words.main.dialogs.RestoreWordListDialog
 import com.example.words.main.fragments.details.DetailsFragment
 import com.example.words.main.fragments.newword.NewWordFragment
 import com.example.words.main.fragments.wordlist.WordListFragment
@@ -21,6 +23,14 @@ class MainFragmentFactory(private val viewModel: MainViewModel) : FragmentFactor
 
             NewWordFragment::class.java.name -> {
                 NewWordFragment(viewModel)
+            }
+
+            DeleteListDialog::class.java.name -> {
+                DeleteListDialog(viewModel)
+            }
+
+            RestoreWordListDialog::class.java.name -> {
+                RestoreWordListDialog(viewModel)
             }
 
             else -> super.instantiate(classLoader, className)

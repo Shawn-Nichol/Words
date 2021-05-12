@@ -3,7 +3,7 @@ package com.example.words.room
 
 import javax.inject.Inject
 
-class insertDBWords @Inject constructor (val wordDao: WordDao) {
+class InsertDBWords @Inject constructor (val wordDao: WordDao) {
 
 
     suspend fun insert() {

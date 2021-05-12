@@ -8,4 +8,12 @@
     <string name="delete_words">Delete Words</string>
     <string name="restore_list">Restore List</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="snackbar_delete_canceled">Delete all words canceled.</string>
+    <string name="snackbar_restore_canceled">Restore List canceled</string>
+    <string name="dialog_restore_message">This action will restore all the default words</string>
+    <string name="dialog_restore_title">Restore List</string>
+    <string name="dialog_confirm">YES</string>
+    <string name="dialog_cancel">NO</string>
+    <string name="dialog_delete_message">Are you sure you want to remove all Words</string>
+    <string name="dialog_delete_title">Delete all Words</string>
 </resources>
