@@ -10,9 +10,7 @@ import com.example.words.data.WordRepository
 import com.example.words.room.Word
 import com.example.words.room.WordDao
 import com.example.words.room.WordRoomDatabase
-import com.nhaarman.mockitokotlin2.firstValue
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.*
 import org.junit.After
@@ -21,6 +19,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
+import org.mockito.Mock
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
@@ -32,6 +33,8 @@ class MainViewModelTest {
     private lateinit var wordDao: WordDao
     private lateinit var repository: IWordRepository
     private lateinit var viewModel: MainViewModel
+
+    @Mock
     lateinit var wordListObserver: Observer<List<Word>>
 
     // How to mock out the mainlooper
@@ -50,7 +53,7 @@ class MainViewModelTest {
         repository = WordRepository(wordDao)
         viewModel = MainViewModel(repository, Dispatchers.Main)
 
-        wordListObserver = mock()
+
 
 
 
@@ -110,7 +113,8 @@ class MainViewModelTest {
 
 
         assertTrue(argumentCaptor.value.size == 1)
-        assertTrue(argumentCaptor.firstValue.contains(word2))
+        assertTrue(argumentCaptor.capture().contains(word2))
+//        assertTrue(argumentCaptor.firstValue.contains(word2))
 
 
     }

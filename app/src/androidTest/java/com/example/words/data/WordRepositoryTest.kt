@@ -7,11 +7,12 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.words.room.Word
 import com.example.words.room.WordDao
 import com.example.words.room.WordRoomDatabase
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+
 import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.runner.RunWith
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 @RunWith(AndroidJUnit4::class)
 class WordRepositoryTest {
@@ -34,7 +35,7 @@ class WordRepositoryTest {
             .allowMainThreadQueries()
             .build()
 
-        wordDao = mock()
+        wordDao = mock(WordDao::class.java)
 
         repository = WordRepository(wordDao)
     }

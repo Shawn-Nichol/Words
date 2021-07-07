@@ -3,7 +3,8 @@ package com.example.words.main
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.words.doubles.FakeWordRepository
 import com.example.words.room.Word
-import com.nhaarman.mockitokotlin2.mock
+
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -14,7 +15,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mockito.mock
+
 
 @ExperimentalCoroutinesApi
 class MainViewModelUnitTest {

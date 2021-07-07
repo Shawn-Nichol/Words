@@ -25,15 +25,8 @@ class NewWordFragmentTest {
 
     @Before
     fun setup() {
-
     launchFragmentInContainer<NewWordFragment>(null, R.style.Theme_Words)
-
-
     }
-
-
-
-
 
     @Test
     fun saveButton() {

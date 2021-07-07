@@ -6,18 +6,20 @@ import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.nhaarman.mockitokotlin2.firstValue
-import com.nhaarman.mockitokotlin2.lastValue
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.*
 import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
+import org.mockito.Mock
+import org.mockito.Mockito.verify
+import org.mockito.MockitoAnnotations
+
+import org.mockito.junit.MockitoJUnitRunner
 
 
-@RunWith(AndroidJUnit4::class)
+
 class DaoWordTest {
 
 
@@ -27,8 +29,16 @@ class DaoWordTest {
     private lateinit var wordDatabase: WordRoomDatabase
     private lateinit var wordDao: WordDao
 
+    @Mock
+    private lateinit var testObserver: Observer<List<Word>>
+
+
+
     @Before
     fun setup() {
+
+        MockitoAnnotations.initMocks(this)
+
         // Room Builder creates an in memory Database. Information stored in an in-memory database disappears when tests finish
         wordDatabase = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getInstrumentation().context,
@@ -47,7 +57,7 @@ class DaoWordTest {
 
     @Test
     fun emptyList() {
-        val testObserver: Observer<List<Word>> = mock()
+
 
         wordDao.getAlphabetizedWords().observeForever(testObserver)
         verify(testObserver).onChanged(kotlin.collections.emptyList())
@@ -60,7 +70,7 @@ class DaoWordTest {
         wordDao.insert(word1)
         wordDao.insert(word2)
 
-        val testObserver: Observer<List<Word>> = mock()
+
         wordDao.getAlphabetizedWords().observeForever(testObserver)
 
         val listClass = ArrayList::class.java as Class<ArrayList<Word>>
@@ -80,7 +90,7 @@ class DaoWordTest {
         wordDao.insert(word1)
         wordDao.insert(word2)
 
-        val testObserver: Observer<List<Word>> = mock()
+
         wordDao.getAlphabetizedWords().observeForever(testObserver)
 
         val listClass = ArrayList::class.java as Class<ArrayList<Word>>
@@ -99,15 +109,13 @@ class DaoWordTest {
 
         wordDao.deleteWord(word1)
 
-        val testObserver: Observer<List<Word>> = mock()
+
         wordDao.getAlphabetizedWords().observeForever(testObserver)
 
         val listClass = ArrayList::class.java as Class<ArrayList<Word>>
         val argumentCaptor = ArgumentCaptor.forClass(listClass)
 
         verify(testObserver).onChanged(argumentCaptor.capture())
-        assertTrue(argumentCaptor.firstValue.contains(word2))
-        assertTrue(argumentCaptor.lastValue.contains(word2))
         assertTrue(argumentCaptor.value.size == 1)
     }
 
@@ -120,7 +128,7 @@ class DaoWordTest {
 
         wordDao.deleteAll()
 
-        val testObserver: Observer<List<Word>> = mock()
+
         wordDao.getAlphabetizedWords().observeForever(testObserver)
 
         verify(testObserver).onChanged(kotlin.collections.emptyList())
