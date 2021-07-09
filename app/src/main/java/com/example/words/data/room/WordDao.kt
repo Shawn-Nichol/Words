@@ -1,4 +1,4 @@
-package com.example.words.room
+package com.example.words.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

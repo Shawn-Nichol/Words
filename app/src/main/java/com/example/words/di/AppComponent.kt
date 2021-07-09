@@ -5,7 +5,7 @@ import com.example.words.main.MainActivity
 import com.example.words.main.fragments.details.DetailsFragment
 import com.example.words.main.fragments.newword.NewWordFragment
 import com.example.words.main.fragments.wordlist.WordListFragment
-import com.example.words.room.InsertDBWords
+import com.example.words.data.room.InsertDBWords
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

@@ -3,7 +3,7 @@ package com.example.words.data
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import com.example.words.doubles.FakeDao
-import com.example.words.room.Word
+import com.example.words.data.room.Word
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import kotlinx.coroutines.ExperimentalCoroutinesApi

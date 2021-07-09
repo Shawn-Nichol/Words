@@ -4,7 +4,7 @@ import android.graphics.Color
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.words.main.MainViewModel
-import com.example.words.room.Word
+import com.example.words.data.room.Word
 
 class CustomTouchHelper(val viewModel: MainViewModel) : ItemTouchHelper.Callback() {
     override fun getMovementFlags(

@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.words.room.Word
-import com.example.words.room.WordDao
-import com.example.words.room.WordRoomDatabase
+import com.example.words.data.room.Word
+import com.example.words.data.room.WordDao
+import com.example.words.data.room.WordRoomDatabase
 
 import kotlinx.coroutines.runBlocking
 import org.junit.*
@@ -15,7 +15,7 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 
 @RunWith(AndroidJUnit4::class)
-class WordRepositoryTest {
+class WordRepositoryFake {
 
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()

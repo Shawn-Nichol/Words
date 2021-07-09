@@ -15,7 +15,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 
-@RunWith(AndroidJUnit4::class)
+
 class NewWordFragmentTest {
 
 
@@ -44,18 +44,6 @@ class NewWordFragmentTest {
     @Test
     fun saveButton_click_noWord() {
         onView(withId(saveButton)).perform(click())
-// Option 1
-//        onToast("No word entered").check(matches(isDisplayed()))
-
-// Option 2
-//        onView(withText(R.string.Toast_no_word)).check(matches(isDisplayed()))
-
-// option 3
-        // Is toast displayed and is the message correct?
-//        onView(withText("No word entered")).inRoot(ToastMatcher2())
-//            .check(matches(isDisplayed()))
-
-
 
     }
 

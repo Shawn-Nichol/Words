@@ -1,27 +1,31 @@
-package com.example.words.room
+package com.example.words.data.room
 
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.room.Room
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.example.words.util.MainCoroutineRule
 
-import junit.framework.Assert.assertTrue
+
+import junit.framework.TestCase.assertFalse
+import junit.framework.TestCase.assertTrue
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.*
-import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
-import org.mockito.junit.MockitoJUnitRunner
-
-
-
+@SmallTest
+@ExperimentalCoroutinesApi
 class DaoWordTest {
 
+    @get:Rule
+    val mainCoroutineRule = MainCoroutineRule()
 
     @get:Rule
     val taskExecutorRule = InstantTaskExecutorRule()
@@ -32,6 +36,8 @@ class DaoWordTest {
     @Mock
     private lateinit var testObserver: Observer<List<Word>>
 
+    private val word1 = Word("Test1")
+    private val word2 = Word("Test2")
 
 
     @Before
@@ -48,28 +54,18 @@ class DaoWordTest {
 
 
         wordDao = wordDatabase.wordDao()
+
+        insertWords()
     }
 
     @After
     fun closeDb() {
         wordDatabase.close()
+        wordDao.getAlphabetizedWords().removeObserver(testObserver)
     }
 
     @Test
-    fun emptyList() {
-
-
-        wordDao.getAlphabetizedWords().observeForever(testObserver)
-        verify(testObserver).onChanged(kotlin.collections.emptyList())
-    }
-
-    @Test
-    fun insertWord() = runBlocking{
-        val word1 = Word("Test1")
-        val word2 = Word("Test2")
-        wordDao.insert(word1)
-        wordDao.insert(word2)
-
+    fun insertWord() = runBlockingTest {
 
         wordDao.getAlphabetizedWords().observeForever(testObserver)
 
@@ -79,33 +75,15 @@ class DaoWordTest {
         val argumentCaptor = ArgumentCaptor.forClass(listClass)
 
         verify(testObserver).onChanged(argumentCaptor.capture())
+
         val capturedArgument = argumentCaptor.value
         assertTrue(capturedArgument.size == 2)
-    }
-
-    @Test
-    fun getAlphabetizedWords() = runBlocking {
-        val word1 = Word("Test1")
-        val word2 = Word("Test2")
-        wordDao.insert(word1)
-        wordDao.insert(word2)
-
-
-        wordDao.getAlphabetizedWords().observeForever(testObserver)
-
-        val listClass = ArrayList::class.java as Class<ArrayList<Word>>
-        val argumentCaptor = ArgumentCaptor.forClass(listClass)
-        verify(testObserver).onChanged(argumentCaptor.capture())
-        val capturedArgument = argumentCaptor.value
         assertTrue(capturedArgument.containsAll(listOf(word1, word2)))
     }
 
+
     @Test
-    fun deleteWord() = runBlocking {
-        val word1 = Word("Test1")
-        val word2 = Word("Test2")
-        wordDao.insert(word1)
-        wordDao.insert(word2)
+    fun deleteWord() = runBlockingTest {
 
         wordDao.deleteWord(word1)
 
@@ -116,23 +94,33 @@ class DaoWordTest {
         val argumentCaptor = ArgumentCaptor.forClass(listClass)
 
         verify(testObserver).onChanged(argumentCaptor.capture())
-        assertTrue(argumentCaptor.value.size == 1)
+
+        val captureArgument = argumentCaptor.value
+
+        assertTrue(captureArgument.size == 1)
+        assertFalse(captureArgument.contains(word1))
+
     }
 
     @Test
     fun deleteAll() = runBlocking {
-        val word1 = Word("Test1")
-        val word2 = Word("Test2")
-        wordDao.insert(word1)
-        wordDao.insert(word2)
 
         wordDao.deleteAll()
 
-
         wordDao.getAlphabetizedWords().observeForever(testObserver)
 
-        verify(testObserver).onChanged(kotlin.collections.emptyList())
+        val listClass = ArrayList::class.java as Class<ArrayList<Word>>
+        val argumentCaptor = ArgumentCaptor.forClass(listClass)
 
+        verify(testObserver).onChanged(argumentCaptor.capture())
 
+        val captureArgument = argumentCaptor.value
+
+        assertTrue(captureArgument.isEmpty())
+    }
+
+    private fun insertWords() = runBlockingTest {
+        wordDao.insert(word1)
+        wordDao.insert(word2)
     }
 }

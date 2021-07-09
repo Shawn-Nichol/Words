@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.words.R
 import com.example.words.main.fragments.wordlist.WordListFragmentDirections
-import com.example.words.room.Word
+import com.example.words.data.room.Word
 import javax.inject.Inject
 
 class RVAdapter @Inject constructor() : androidx.recyclerview.widget.ListAdapter<Word,

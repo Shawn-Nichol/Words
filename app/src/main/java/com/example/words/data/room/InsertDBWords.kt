@@ -1,7 +1,6 @@
-package com.example.words.room
+package com.example.words.data.room
 
 
-import android.util.Log
 import javax.inject.Inject
 
 class InsertDBWords @Inject constructor (val wordDao: WordDao) {

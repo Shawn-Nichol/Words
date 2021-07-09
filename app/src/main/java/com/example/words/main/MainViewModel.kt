@@ -1,12 +1,10 @@
 package com.example.words.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.words.data.IWordRepository
-import com.example.words.room.Word
+import com.example.words.data.room.Word
 import com.example.words.di.IoDispatcher
-import com.example.words.room.InsertDBWords
 import kotlinx.coroutines.*
 import javax.inject.Inject
 

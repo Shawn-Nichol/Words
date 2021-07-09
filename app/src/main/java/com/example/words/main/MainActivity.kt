@@ -10,7 +10,7 @@ import androidx.navigation.ui.NavigationUI
 import com.example.words.MyApplication
 import com.example.words.R
 import com.example.words.databinding.ActivityMainBinding
-import com.example.words.room.WordDao
+import com.example.words.data.room.WordDao
 import javax.inject.Inject
 
 var TAG = "MyTest"

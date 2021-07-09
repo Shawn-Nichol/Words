@@ -7,9 +7,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.words.data.IWordRepository
 import com.example.words.data.WordRepository
-import com.example.words.room.Word
-import com.example.words.room.WordDao
-import com.example.words.room.WordRoomDatabase
+import com.example.words.data.room.Word
+import com.example.words.data.room.WordDao
+import com.example.words.data.room.WordRoomDatabase
 
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.*
@@ -20,7 +20,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
 import org.mockito.Mock
-import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 
 @ExperimentalCoroutinesApi

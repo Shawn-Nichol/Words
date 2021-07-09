@@ -2,7 +2,7 @@ package com.example.words.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.words.doubles.FakeWordRepository
-import com.example.words.room.Word
+import com.example.words.data.room.Word
 
 
 import kotlinx.coroutines.Dispatchers

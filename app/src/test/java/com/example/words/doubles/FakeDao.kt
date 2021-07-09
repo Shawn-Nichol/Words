@@ -2,8 +2,8 @@ package com.example.words.doubles
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.words.room.Word
-import com.example.words.room.WordDao
+import com.example.words.data.room.Word
+import com.example.words.data.room.WordDao
 
 class FakeDao : WordDao {
     override fun getAlphabetizedWords(): LiveData<List<Word>> {

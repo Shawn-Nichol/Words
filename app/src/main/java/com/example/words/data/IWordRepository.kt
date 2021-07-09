@@ -1,7 +1,7 @@
 package com.example.words.data
 
 import androidx.lifecycle.LiveData
-import com.example.words.room.Word
+import com.example.words.data.room.Word
 
 interface IWordRepository {
     val allWords: LiveData<List<Word>>
