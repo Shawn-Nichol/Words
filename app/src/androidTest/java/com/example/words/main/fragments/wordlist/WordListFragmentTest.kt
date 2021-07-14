@@ -14,15 +14,15 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.words.R
 import com.example.words.main.MainFragmentFactory
 import com.example.words.main.MainViewModel
-import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
+
 class WordListFragmentTest {
 
     // Executes task sin the Architecture component in the same thread.
