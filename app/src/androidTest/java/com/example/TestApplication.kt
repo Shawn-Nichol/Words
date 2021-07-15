@@ -1,8 +1,8 @@
-package com.example.words
+package com.example
 
 
+import com.example.words.MyApplication
 import com.example.words.di.DaggerTestAppComponent
-import com.example.words.di.TestAppComponent
 
 
 /**
