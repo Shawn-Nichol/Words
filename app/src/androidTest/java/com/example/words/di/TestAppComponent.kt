@@ -7,7 +7,11 @@ import javax.inject.Singleton
 
 
 @Singleton
-@Component(modules =[])
+@Component(modules =[
+    RoomModule::class,
+    StorageModule::class,
+    DispatchersModule::class
+])
 interface TestAppComponent : AppComponent {
 
     // Factory to create instances of the AppComponent.

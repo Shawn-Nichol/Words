@@ -1,7 +1,7 @@
 package com.example.words
 
-import androidx.test.platform.app.InstrumentationRegistry
-import com.example.words.di.AppComponent
+
+import com.example.words.di.DaggerTestAppComponent
 import com.example.words.di.TestAppComponent
 
 

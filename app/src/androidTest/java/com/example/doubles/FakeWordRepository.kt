@@ -5,8 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.words.data.IWordRepository
 import com.example.words.data.room.Word
+import javax.inject.Inject
 
-class FakeWordRepository : IWordRepository {
+class FakeWordRepository @Inject constructor(): IWordRepository {
 
     override val allWords: LiveData<List<Word>> = MutableLiveData<List<Word>>()
 

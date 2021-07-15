@@ -1,27 +1,31 @@
 package com.example.words.data.room
 
-
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.room.Room
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.words.util.MainCoroutineRule
-
-
-import junit.framework.TestCase.assertFalse
-import junit.framework.TestCase.assertTrue
+import com.example.words.testutils.MainCoroutineRule
+import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.*
+import org.junit.After
+import org.junit.Assert.assertFalse
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.ArgumentCaptor
 import org.mockito.Mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
+
 @SmallTest
 @ExperimentalCoroutinesApi
+@RunWith(AndroidJUnit4::class)
 class DaoWordTest {
 
     @get:Rule
@@ -60,8 +64,8 @@ class DaoWordTest {
 
     @After
     fun closeDb() {
-        wordDatabase.close()
         wordDao.getAlphabetizedWords().removeObserver(testObserver)
+        wordDatabase.close()
     }
 
     @Test
