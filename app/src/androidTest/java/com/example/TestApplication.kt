@@ -1,10 +1,10 @@
 package com.example
 
 
-import com.example.word.di.DaggerTestAppComponent
-import com.example.word.di.TestAppComponent
-import com.example.words.MyApplication
 
+import com.example.words.di.TestAppComponent
+import com.example.words.MyApplication
+import com.example.words.di.DaggerTestAppComponent
 
 
 /**

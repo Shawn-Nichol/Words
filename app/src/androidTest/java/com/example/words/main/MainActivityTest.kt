@@ -8,7 +8,6 @@ import androidx.test.espresso.matcher.ViewMatchers
 import com.example.words.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

@@ -1,4 +1,4 @@
-package com.example.word.di
+package com.example.words.di
 
 
 import android.app.Application
