@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
+
 import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.words.testutils.MainCoroutineRule
@@ -47,7 +48,7 @@ class DaoWordTest {
     @Before
     fun setup() {
 
-        MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.openMocks(this)
 
         // Room Builder creates an in memory Database. Information stored in an in-memory database disappears when tests finish
         wordDatabase = Room.inMemoryDatabaseBuilder(

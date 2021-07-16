@@ -1,16 +1,15 @@
 package com.example.words.main
 
-import android.os.Parcel
-import android.os.Parcelable
+
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+
 import androidx.test.filters.SmallTest
 import com.example.words.data.WordRepository
 import com.example.words.data.room.Word
 import com.example.words.testutils.MainCoroutineRule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -49,7 +48,7 @@ class MainViewModelUnitTest {
     @Before
     fun setup() {
 
-        MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.openMocks(this)
 
         viewModel = MainViewModel(repository, testDispatcher)
 

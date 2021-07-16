@@ -3,6 +3,7 @@ package com.example.words.data
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
+
 import androidx.test.filters.SmallTest
 import com.example.words.data.room.Word
 import com.example.words.data.room.WordDao
@@ -48,7 +49,7 @@ class WordRepositoryUnitTest {
     @Before
     fun setup() {
 
-        MockitoAnnotations.initMocks(this)
+        MockitoAnnotations.openMocks(this)
 
         Dispatchers.setMain(testDispatcher)
 
