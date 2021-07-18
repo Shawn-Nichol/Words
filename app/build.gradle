@@ -51,6 +51,8 @@ android {
         exclude "META-INF/licenses/ASM"
         pickFirst "win32-x86-64/attach_hotspot_windows.dll"
         pickFirst "win32-x86/attach_hotspot_windows.dll"
+        exclude "mockito-extensions/org.mockito.plugins.MockMaker"
+
     }
 
 }
@@ -120,8 +122,19 @@ dependencies {
     testImplementation "org.robolectric:robolectric:4.5.1"
 
     //Mockito
-    androidTestImplementation "org.mockito:mockito-android:3.11.2"
-    testImplementation "org.mockito:mockito-core:3.11.2"
+    def mockito_version = "3.10.0"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_version"
+    androidTestImplementation "org.mockito:mockito-core:$mockito_version"
+    // I read some where this has more extension than core
+//    androidTestImplementation "org.mockito:mockito-inline:$mockito_version"
+
+//    androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito-inline:2.28.0'
+//    androidTestImplementation 'com.linkedin.dexmaker:dexmaker-mockito-inline:2.25.1'
+//    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:2.28.1"
+//    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito-inline-extended:2.28.0"
+
+
 
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation 'androidx.arch.core:core-testing:2.1.0'

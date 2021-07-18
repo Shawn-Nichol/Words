@@ -18,4 +18,3 @@ class MyCustomTestRunner : AndroidJUnitRunner() {
         return super.newApplication(cl, TestApplication::class.java.name, context)
     }
 }
-

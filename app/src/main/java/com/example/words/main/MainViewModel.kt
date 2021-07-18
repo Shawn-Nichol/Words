@@ -8,7 +8,7 @@ import com.example.words.di.IoDispatcher
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+open class MainViewModel @Inject constructor(
     var repository: IWordRepository,
     @IoDispatcher var ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
