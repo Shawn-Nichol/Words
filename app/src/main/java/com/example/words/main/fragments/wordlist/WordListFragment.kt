@@ -73,7 +73,7 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
     }
 
     private fun initRecyclerView() {
-        val recyclerView: RecyclerView = binding.recyclerView
+        val recyclerView: RecyclerView = binding.rvContainer
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvAdapter = RVAdapter()
 
