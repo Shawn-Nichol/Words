@@ -38,7 +38,7 @@ class DetailsFragment(private val viewModel: MainViewModel) : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
         binding.binding = this
 
-        binding.tvWord.text = word
+        binding.tvWordTitle.text = word
 
         return binding.root
     }

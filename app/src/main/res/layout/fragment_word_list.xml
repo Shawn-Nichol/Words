@@ -16,7 +16,7 @@
         tools:context=".main.fragments.wordlist.WordListFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/rv_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/word_item" />

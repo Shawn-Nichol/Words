@@ -10,11 +10,10 @@ import com.example.words.data.room.WordRoomDatabase
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
-open class WordRepositoryFake @Inject constructor() : IWordRepository{
+open class WordRepositoryFake @Inject constructor() : IWordRepository {
 
     lateinit var database: WordRoomDatabase
     lateinit var wordDao: WordDao
-
 
 
     init {
@@ -26,7 +25,7 @@ open class WordRepositoryFake @Inject constructor() : IWordRepository{
         }
     }
 
-    override val allWords: LiveData<List<Word>>  = wordDao.getAlphabetizedWords()
+    override val allWords: LiveData<List<Word>> = wordDao.getAlphabetizedWords()
 
     override suspend fun insert(word: Word) {
         wordDao.insert(word)
@@ -45,8 +44,12 @@ open class WordRepositoryFake @Inject constructor() : IWordRepository{
     }
 
     suspend fun dummyData() {
-        for(i in 0..50) {
-            val word = Word("Test word: $i")
+        for (i in 0..50) {
+            val word = if (i < 10) {
+                Word("Test word: 0$i")
+            } else {
+                Word("Test word: $i")
+            }
             wordDao.insert(word)
         }
     }

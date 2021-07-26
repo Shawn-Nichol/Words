@@ -52,14 +52,11 @@ class MainViewModelUnitTest {
 
         viewModel = MainViewModel(repository, testDispatcher)
 
-        Dispatchers.setMain(testDispatcher)
-
         word1 = Word("Word1")
     }
 
     @After
     fun tearDown() {
-        Dispatchers.resetMain()
         testDispatcher.cleanupTestCoroutines()
     }
 

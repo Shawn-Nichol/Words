@@ -46,7 +46,7 @@ class DetailsFragmentUnitTest {
 
     @Test
     fun `TextView Word Title loaded`() {
-        Espresso.onView(ViewMatchers.withId(R.id.tv_word))
+        Espresso.onView(ViewMatchers.withId(R.id.tv_word_title))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             .check(ViewAssertions.matches((ViewMatchers.withText("Test"))))
     }

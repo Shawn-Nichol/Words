@@ -1,13 +1,11 @@
 package com.example.words.main.fragments.wordlist
 
-import android.content.Context
 import android.os.Looper.getMainLooper
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
@@ -24,7 +22,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 import org.robolectric.RobolectricTestRunner
@@ -84,7 +81,7 @@ class WordListFragmentUnitTest {
     // RecyclerViewVisible.
     @Test
     fun `RecyclerView visible`() {
-        Espresso.onView(ViewMatchers.withId(R.id.recyclerView))
+        Espresso.onView(ViewMatchers.withId(R.id.rv_container))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
     // Menu Delete all
