@@ -41,6 +41,7 @@ class DetailsFragmentUnitTest {
             fragmentArgs = bundle,
             themeResId = R.style.Theme_Words
         )
+
     }
 
     @Test

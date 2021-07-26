@@ -43,24 +43,17 @@ class WordRepositoryUnitTest {
 
     private val testDispatcher: TestCoroutineDispatcher = mainCoroutineRule.dispatcher
 
-
-
-
     @Before
     fun setup() {
 
         MockitoAnnotations.openMocks(this)
-
-        Dispatchers.setMain(testDispatcher)
 
         repository = WordRepository(wordDao)
     }
 
     @After
     fun tearDown() {
-        Dispatchers.resetMain()
         testDispatcher.cleanupTestCoroutines()
-
     }
 
     @Test
