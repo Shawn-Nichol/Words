@@ -29,7 +29,6 @@ import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.LooperMode
 
 @SmallTest
-@LooperMode(LooperMode.Mode.PAUSED)
 @RunWith(RobolectricTestRunner::class)
 class WordListFragmentUnitTest {
 
@@ -52,7 +51,7 @@ class WordListFragmentUnitTest {
         MockitoAnnotations.openMocks(this)
 
         // Shadow can modify or extend the corresponding class in Android
-        shadowOf(getMainLooper()).idle()
+//        shadowOf(getMainLooper()).idle()
 
         doReturn(liveData).`when`(viewModel).wordList
 

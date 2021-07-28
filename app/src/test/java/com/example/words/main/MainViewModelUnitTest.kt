@@ -20,6 +20,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
@@ -36,9 +37,10 @@ class MainViewModelUnitTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: MainViewModel
     @Mock
     private lateinit var repository: WordRepository
+
+    private lateinit var viewModel: MainViewModel
 
     private lateinit var word1: Word
 
@@ -68,7 +70,7 @@ class MainViewModelUnitTest {
         viewModel.wordList
 
         // Then
-        verify(repository).allWords
+        verify(repository, times(1)).allWords
     }
 
     @Test
@@ -78,7 +80,7 @@ class MainViewModelUnitTest {
         viewModel.insertWord(word1)
 
         // Then
-        verify(repository).insert(word1)
+        verify(repository, times(1)).insert(word1)
     }
 
     @Test
@@ -89,7 +91,7 @@ class MainViewModelUnitTest {
         viewModel.deleteWord(word1)
 
         // Then results
-        verify(repository).deleteWord(word1)
+        verify(repository, times(1)).deleteWord(word1)
     }
 
     @Test
@@ -100,13 +102,13 @@ class MainViewModelUnitTest {
         viewModel.deleteAllWords()
 
         // Then results
-        verify(repository).deleteAll()
+        verify(repository, times(1)).deleteAll()
     }
 
     @Test
     fun `restore original words in database`() = mainCoroutineRule.runBlockingTest {
         viewModel.restoreList()
 
-        verify(repository).restore()
+        verify(repository, times(1)).restore()
     }
 }
