@@ -109,20 +109,5 @@ class WordListFragmentUnitTest {
         verify(navController, times(1))
             .navigate(R.id.action_dest_wordListFragment_to_restoreWordListDialog)
     }
-    // Menu Dark list
 
-    @Test
-    fun `Menu DarkMode on`() {
-        Espresso.openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext())
-        Espresso.onView(ViewMatchers.withText(R.string.dark_mode))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-            .perform(ViewActions.click())
-
-
-    }
-
-    @Test
-    fun `Menu DarkMode off`() {
-
-    }
 }

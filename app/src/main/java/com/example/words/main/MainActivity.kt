@@ -2,6 +2,11 @@ package com.example.words.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -44,9 +49,50 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        Log.i("Practice", "onStart themeMode = ${viewModel.themeMode}")
+        changeThemeMode(viewModel.themeMode)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("Practice", "onPause themeMode = ${viewModel.themeMode}")
+        viewModel.themeModeSave()
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.nav_host_fragment).navigateUp()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.menu_dark_mode -> {
+
+                    // Move to MainActivity since it has to be trouble shooted
+
+                    if(viewModel.themeMode == 2) {
+                        viewModel.themeMode = 1
+
+                    } else {
+                        viewModel.themeMode = 2
+                    }
+                    Log.i("Practice", "ThemeMode = ${viewModel.themeMode}")
+                    changeThemeMode(viewModel.themeMode)
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun changeThemeMode(mode: Int) {
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
 }

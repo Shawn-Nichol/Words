@@ -23,8 +23,11 @@ open class MainViewModel @Inject constructor(
 
     var wordList: LiveData<List<Word>> = repository.allWords
 
-    var themeMode: Int = 0
+    var themeMode: Int = 1
 
+    init {
+        themeModeLoad()
+    }
 
     override fun onCleared() {
         super.onCleared()
@@ -49,10 +52,10 @@ open class MainViewModel @Inject constructor(
     }
 
     fun themeModeLoad() {
-        themeMode = sharedPref.ThemeModeGet()
+        themeMode = sharedPref.themeModeGet()
     }
 
-    fun themeModeSave(themeMode: Int) {
-        sharedPref.ThemeModeSave(themeMode)
+    fun themeModeSave() {
+        sharedPref.themeModeSave(themeMode)
     }
 }

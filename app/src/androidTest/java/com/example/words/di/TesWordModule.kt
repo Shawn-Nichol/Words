@@ -7,7 +7,7 @@ import dagger.Module
 import javax.inject.Singleton
 
 @Module
-abstract class TestStorageModule {
+abstract class TesWordModule {
     @Binds
     @Singleton
     abstract fun provideRepository(repository: WordRepositoryFake): IWordRepository

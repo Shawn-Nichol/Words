@@ -72,29 +72,12 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
                 findNavController().navigate(R.id.action_dest_wordListFragment_to_restoreWordListDialog)
                 true
             }
-            R.id.menu_dark_mode -> {
-                // Move to MainActivity since it has to be trouble shooted
 
-                if(viewModel.themeMode == 2) {
-                    viewModel.themeMode = 1
-
-                } else {
-                    viewModel.themeMode = 2
-                }
-                darkMode(viewModel.themeMode)
-
-                true
-            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun darkMode(mode: Int) {
-        AppCompatDelegate.setDefaultNightMode(mode)
 
-
-
-    }
 
     private fun initRecyclerView() {
         val recyclerView: RecyclerView = binding.rvContainer
