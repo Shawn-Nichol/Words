@@ -5,23 +5,17 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
 import androidx.test.filters.SmallTest
+import com.example.words.data.MySharedPreferences
 import com.example.words.data.WordRepository
 import com.example.words.data.room.Word
 import com.example.words.testutils.MainCoroutineRule
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
-import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 
 @SmallTest
@@ -38,7 +32,10 @@ class MainViewModelUnitTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var repository: WordRepository
+    private lateinit var wordRepository: WordRepository
+
+    @Mock
+    private lateinit var sharedPrefRepository: MySharedPreferences
 
     private lateinit var viewModel: MainViewModel
 
@@ -52,7 +49,7 @@ class MainViewModelUnitTest {
 
         MockitoAnnotations.openMocks(this)
 
-        viewModel = MainViewModel(repository, testDispatcher)
+        viewModel = MainViewModel(wordRepository, sharedPrefRepository, testDispatcher)
 
         word1 = Word("Word1")
     }
@@ -70,7 +67,7 @@ class MainViewModelUnitTest {
         viewModel.wordList
 
         // Then
-        verify(repository, times(1)).allWords
+        verify(wordRepository, times(1)).allWords
     }
 
     @Test
@@ -80,7 +77,7 @@ class MainViewModelUnitTest {
         viewModel.insertWord(word1)
 
         // Then
-        verify(repository, times(1)).insert(word1)
+        verify(wordRepository, times(1)).insert(word1)
     }
 
     @Test
@@ -91,7 +88,7 @@ class MainViewModelUnitTest {
         viewModel.deleteWord(word1)
 
         // Then results
-        verify(repository, times(1)).deleteWord(word1)
+        verify(wordRepository, times(1)).deleteWord(word1)
     }
 
     @Test
@@ -102,13 +99,37 @@ class MainViewModelUnitTest {
         viewModel.deleteAllWords()
 
         // Then results
-        verify(repository, times(1)).deleteAll()
+        verify(wordRepository, times(1)).deleteAll()
     }
 
     @Test
     fun `restore original words in database`() = mainCoroutineRule.runBlockingTest {
         viewModel.restoreList()
 
-        verify(repository, times(1)).restore()
+        verify(wordRepository, times(1)).restore()
+    }
+
+    @Test
+    fun `themeModeLoad Get Value`() {
+        // given
+        val mode = 1
+        `when`(sharedPrefRepository.ThemeModeGet()).thenReturn(mode)
+
+        // when
+        val themeMode = viewModel.themeModeLoad()
+
+        // Then
+        verify(sharedPrefRepository).ThemeModeGet()
+        Assert.assertEquals(themeMode, mode)
+    }
+
+    @Test
+    fun `themeMode Save Mode`() {
+        // given
+        val mode = 1
+        // when
+        viewModel.themeModeSave(mode)
+        // then
+        verify(sharedPrefRepository).ThemeModeSave(mode)
     }
 }

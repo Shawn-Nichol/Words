@@ -17,6 +17,7 @@ import com.example.words.R
 import com.example.words.data.room.Word
 import com.example.words.main.MainFragmentFactory
 import com.example.words.main.MainViewModel
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -111,10 +112,17 @@ class WordListFragmentUnitTest {
     // Menu Dark list
 
     @Test
-    fun `Menu DarkMode`() {
+    fun `Menu DarkMode on`() {
         Espresso.openActionBarOverflowOrOptionsMenu(ApplicationProvider.getApplicationContext())
         Espresso.onView(ViewMatchers.withText(R.string.dark_mode))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
             .perform(ViewActions.click())
+
+
+    }
+
+    @Test
+    fun `Menu DarkMode off`() {
+
     }
 }

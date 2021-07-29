@@ -2,6 +2,7 @@ package com.example.words.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.words.data.IMySharedPreferences
 import com.example.words.data.IWordRepository
 import com.example.words.data.room.Word
 import com.example.words.di.IoDispatcher
@@ -10,6 +11,7 @@ import javax.inject.Inject
 
 open class MainViewModel @Inject constructor(
     var repository: IWordRepository,
+    var sharedPref: IMySharedPreferences,
     @IoDispatcher var ioDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
@@ -21,8 +23,13 @@ open class MainViewModel @Inject constructor(
 
     var wordList: LiveData<List<Word>> = repository.allWords
 
-    fun insertWord(word: Word) = viewModelScope.launch {
-        repository.insert(word)
+    var themeMode: Int = 0
+
+
+    override fun onCleared() {
+        super.onCleared()
+        // This cancels all Coroutines that use the viewModelJob when the ViewModel is closed.
+        viewModelJob.cancel()
     }
 
     fun deleteWord(word: Word) = viewModelScope.launch {
@@ -33,13 +40,19 @@ open class MainViewModel @Inject constructor(
         repository.deleteAll()
     }
 
+    fun insertWord(word: Word) = viewModelScope.launch {
+        repository.insert(word)
+    }
+
     fun restoreList() = viewModelScope.launch {
         repository.restore()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        // This cancels all Coroutines that use the viewModelJob when the ViewModel is closed.
-        viewModelJob.cancel()
+    fun themeModeLoad() {
+        themeMode = sharedPref.ThemeModeGet()
+    }
+
+    fun themeModeSave(themeMode: Int) {
+        sharedPref.ThemeModeSave(themeMode)
     }
 }

@@ -1,9 +1,12 @@
 package com.example.words.main.fragments.wordlist
 
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -17,6 +20,7 @@ import com.example.words.main.MainFragmentFactory
 import com.example.words.main.MainViewModel
 import com.example.words.main.fragments.wordlist.ui.CustomTouchHelper
 import com.example.words.main.fragments.wordlist.ui.RVAdapter
+import com.example.words.util.*
 import javax.inject.Inject
 
 
@@ -33,6 +37,7 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
         requireActivity().supportFragmentManager.fragmentFactory = MainFragmentFactory(viewModel)
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(
@@ -53,6 +58,8 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater){
         inflater.inflate(R.menu.word_list_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -66,10 +73,27 @@ class WordListFragment(private val viewModel: MainViewModel) : Fragment() {
                 true
             }
             R.id.menu_dark_mode -> {
+                // Move to MainActivity since it has to be trouble shooted
+
+                if(viewModel.themeMode == 2) {
+                    viewModel.themeMode = 1
+
+                } else {
+                    viewModel.themeMode = 2
+                }
+                darkMode(viewModel.themeMode)
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun darkMode(mode: Int) {
+        AppCompatDelegate.setDefaultNightMode(mode)
+
+
+
     }
 
     private fun initRecyclerView() {

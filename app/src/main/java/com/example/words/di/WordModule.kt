@@ -7,8 +7,9 @@ import dagger.Module
 import javax.inject.Singleton
 
 @Module
-abstract class StorageModule {
+abstract class WordModule {
     @Binds
     @Singleton
     abstract fun provideRepository(repository: WordRepository): IWordRepository
+
 }
