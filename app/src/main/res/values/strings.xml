@@ -7,7 +7,8 @@
     <string name="Toast_no_word">No word entered</string>
     <string name="delete_words">Delete Words</string>
     <string name="restore_list">Restore List</string>
-    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_on">Dark Mode: ON </string>
+    <string name="dark_mode_off">Dark Mode: OFF</string>
     <string name="snackbar_delete_canceled">Delete all words canceled.</string>
     <string name="snackbar_restore_canceled">Restore List canceled</string>
     <string name="dialog_restore_message">This action will restore all the default words</string>

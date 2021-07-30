@@ -113,23 +113,22 @@ class MainViewModelUnitTest {
     fun `themeModeLoad Get Value`() {
         // given
         val mode = 1
-        `when`(sharedPrefRepository.ThemeModeGet()).thenReturn(mode)
+        `when`(sharedPrefRepository.themeModeGet()).thenReturn(mode)
 
         // when
         val themeMode = viewModel.themeModeLoad()
 
         // Then
-        verify(sharedPrefRepository).ThemeModeGet()
+        verify(sharedPrefRepository).themeModeGet()
         Assert.assertEquals(themeMode, mode)
     }
 
     @Test
     fun `themeMode Save Mode`() {
-        // given
-        val mode = 1
+
         // when
-        viewModel.themeModeSave(mode)
+        viewModel.themeModeSave()
         // then
-        verify(sharedPrefRepository).ThemeModeSave(mode)
+        verify(sharedPrefRepository).themeModeSave(viewModel.themeMode)
     }
 }
