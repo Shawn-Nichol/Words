@@ -1,5 +1,6 @@
 package com.example.words.main
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,7 +24,6 @@ var TAG = "MyTest"
 class MainActivity : AppCompatActivity() {
 
 
-
     @Inject
     lateinit var viewModel: MainViewModel
 
@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
 
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        val navHostFragment: Fragment? = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        val navHostFragment: Fragment? =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
         val navController = navHostFragment!!.findNavController()
         NavigationUI.setupActionBarWithNavController(this, navController)
 
@@ -51,13 +52,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.i("Practice", "onStart themeMode = ${viewModel.themeMode}")
         changeThemeMode(viewModel.themeMode)
+
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i("Practice", "onPause themeMode = ${viewModel.themeMode}")
         viewModel.themeModeSave()
     }
 
@@ -65,27 +65,24 @@ class MainActivity : AppCompatActivity() {
         return findNavController(R.id.nav_host_fragment).navigateUp()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
+
+        val menuItem = menu.findItem(R.id.menu_dark_mode)
+        menuItem.setTitle(if (viewModel.themeMode == 1) R.string.dark_mode_off else R.string.dark_mode_on)
+
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when (item.itemId) {
             R.id.menu_dark_mode -> {
 
-                    // Move to MainActivity since it has to be trouble shooted
+                viewModel.themeMode = if (viewModel.themeMode == 2) 1 else 2
 
-                    if(viewModel.themeMode == 2) {
-                        viewModel.themeMode = 1
-
-                    } else {
-                        viewModel.themeMode = 2
-                    }
-                    Log.i("Practice", "ThemeMode = ${viewModel.themeMode}")
-                    changeThemeMode(viewModel.themeMode)
-
+                Log.i("Practice", "ThemeMode = ${viewModel.themeMode}")
+                changeThemeMode(viewModel.themeMode)
                 true
             }
             else -> super.onOptionsItemSelected(item)
