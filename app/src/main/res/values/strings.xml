@@ -17,4 +17,5 @@
     <string name="dialog_cancel">NO</string>
     <string name="dialog_delete_message">Are you sure you want to remove all Words</string>
     <string name="dialog_delete_title">Delete all Words</string>
+    <string name="description_test">THIS a  test</string>
 </resources>

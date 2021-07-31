@@ -1,12 +1,16 @@
 package com.example.words.main
 
+import android.app.Activity
 import android.content.Context
+import androidx.appcompat.widget.Toolbar
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
+import androidx.test.espresso.contrib.DrawerActions
+import androidx.test.espresso.contrib.DrawerMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
@@ -104,5 +108,66 @@ class MainActivityTest {
 
         Assert.assertEquals(MODE_DAY, currentMode)
 
+    }
+
+    @Test
+    fun navDrawer_slideOpen() {
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout))
+            .check(ViewAssertions.matches(DrawerMatchers.isClosed()))
+            .perform(DrawerActions.open())
+    }
+
+    @Test
+    fun navDrawer_click_HomeIcon() {
+        Espresso.onView(ViewMatchers.withContentDescription(scenario.getToolbarNavigationContentDescription()))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout))
+            .check(ViewAssertions.matches(DrawerMatchers.isOpen()))
+
+    }
+
+    @Test
+    fun navDrawer_slideOpen_Fragment1_click() {
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout))
+            .check(ViewAssertions.matches(DrawerMatchers.isClosed()))
+            .perform(DrawerActions.open())
+
+        Espresso.onView(ViewMatchers.withText("First"))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(ViewActions.click())
+
+        Thread.sleep(2000)
+
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout))
+            .check(ViewAssertions.matches(DrawerMatchers.isClosed()))
+    }
+
+    @Test
+    fun navDrawer_slideOpen_Fragment2_click() {
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout))
+            .perform(DrawerActions.open())
+
+        Espresso.onView(ViewMatchers.withText("Second"))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+            .perform(ViewActions.click())
+
+        Espresso.onView(ViewMatchers.withId(R.id.drawer_layout))
+            .check(ViewAssertions.matches(DrawerMatchers.isClosed()))
+
+    }
+
+
+
+
+    fun <T : Activity> ActivityScenario<T>.getToolbarNavigationContentDescription()
+            : String {
+        var description = ""
+        onActivity {
+            description =
+                it.findViewById<Toolbar>(R.id.toolbar).navigationContentDescription as String
+        }
+        return description
     }
 }
